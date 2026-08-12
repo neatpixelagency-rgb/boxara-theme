@@ -1,0 +1,5 @@
+.DS_Store
+node_modules/
+*.log
+wp-cli.local.yml
+.claude/settings.local.json
