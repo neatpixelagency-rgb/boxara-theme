@@ -1,0 +1,491 @@
+/**
+ * Shop and category archive (archive-product.php,
+ * woocommerce/content-product.php). Same conventions as home.css: mobile
+ * first, 900px breakpoint switches to the 1440 desktop design, every value
+ * comes from theme.json.
+ *
+ * @package Boxara
+ */
+
+/* Every other full-bleed section in this theme supplies its own
+   background-color (see home.css) — the shop template never did, so the
+   page fell through to the site's default light body background. */
+body.woocommerce-shop,
+body.tax-product_cat {
+	background-color: var(--wp--custom--color--bg-primary);
+}
+
+.woocommerce-shop .site-main,
+.tax-product_cat .site-main {
+	max-width: none;
+	padding: 0;
+	margin: 0;
+}
+
+.woocommerce-breadcrumb {
+	padding: var(--wp--preset--spacing--16) var(--wp--preset--spacing--24) 0;
+	font-size: var(--wp--custom--font-size--body-xs);
+	color: var(--wp--custom--color--text-muted);
+}
+
+.woocommerce-breadcrumb a {
+	color: var(--wp--custom--color--text-muted);
+}
+
+.woocommerce-breadcrumb a:hover,
+.woocommerce-breadcrumb a:focus-visible {
+	color: var(--wp--custom--color--brand-primary);
+}
+
+@media (min-width: 900px) {
+	.woocommerce-breadcrumb {
+		padding: var(--wp--preset--spacing--24) var(--wp--custom--container--gutter-desktop) 0;
+	}
+}
+
+/* -------------------------------------------------------------------------
+ * Shop hero
+ * ---------------------------------------------------------------------- */
+
+.shop-hero {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--8);
+	padding: var(--wp--preset--spacing--32) var(--wp--preset--spacing--24) var(--wp--preset--spacing--16);
+}
+
+.shop-hero__eyebrow {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--accent);
+	font-size: var(--wp--custom--font-size--display-base);
+	color: var(--wp--custom--color--brand-primary);
+}
+
+.shop-hero__title {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--custom--font-size--display-sm);
+	line-height: 1.05;
+	color: var(--wp--custom--color--text-primary);
+}
+
+.shop-hero__title mark {
+	background: none;
+	color: var(--wp--custom--color--brand-primary);
+}
+
+/* Heading + description as one row on desktop (Figma "Heading-Row"): the
+   title stays on one line, the description sits beside it as its own
+   column rather than stacking underneath. */
+.shop-hero__row {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--8);
+}
+
+.shop-hero__desc {
+	max-width: 60ch;
+	margin: 0;
+	font-size: var(--wp--custom--font-size--body-sm);
+	line-height: 1.6;
+	color: var(--wp--custom--color--text-tertiary);
+}
+
+/* -------------------------------------------------------------------------
+ * Controls — category tabs + search
+ * ---------------------------------------------------------------------- */
+
+.shop-controls {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--16);
+	padding: var(--wp--preset--spacing--8) var(--wp--preset--spacing--24) var(--wp--preset--spacing--24);
+}
+
+.shop-tabs {
+	display: flex;
+	gap: var(--wp--preset--spacing--8);
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	scroll-snap-type: x mandatory;
+}
+
+.shop-tabs__tab {
+	flex-shrink: 0;
+	scroll-snap-align: start;
+	padding: var(--wp--preset--spacing--12) var(--wp--preset--spacing--16);
+	border: 1px solid var(--wp--custom--color--stroke-muted);
+	border-radius: var(--wp--custom--radius--xs);
+	background-color: var(--wp--custom--color--stroke-muted);
+	font-family: var(--wp--preset--font-family--label);
+	font-size: var(--wp--custom--font-size--label-sm);
+	font-weight: 700;
+	color: var(--wp--custom--color--text-primary);
+	text-decoration: none;
+	white-space: nowrap;
+	transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.shop-tabs__tab:hover,
+.shop-tabs__tab:focus-visible {
+	border-color: var(--wp--custom--color--stroke-warm);
+}
+
+.shop-tabs__tab.is-active {
+	border-color: var(--wp--custom--color--brand-primary);
+	background-color: var(--wp--custom--color--brand-primary);
+}
+
+.shop-controls__right {
+	display: flex;
+	align-items: stretch;
+	gap: var(--wp--preset--spacing--8);
+	width: 100%;
+}
+
+.shop-controls__search {
+	display: flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--12);
+	flex: 1 0 0;
+	min-width: 0;
+	padding: var(--wp--preset--spacing--12) var(--wp--preset--spacing--16);
+	border: 1px solid var(--wp--custom--color--stroke-muted);
+	border-radius: var(--wp--custom--radius--xs);
+	background-color: var(--wp--custom--color--stroke-muted);
+}
+
+.shop-controls__filter {
+	flex-shrink: 0;
+	padding: var(--wp--preset--spacing--12) var(--wp--preset--spacing--16);
+	border: none;
+	border-radius: var(--wp--custom--radius--xs);
+	background-color: var(--wp--custom--color--brand-primary);
+	font-family: var(--wp--preset--font-family--label);
+	font-size: var(--wp--custom--font-size--label-sm);
+	font-weight: 700;
+	color: var(--wp--preset--color--white);
+	cursor: not-allowed;
+}
+
+.shop-controls__search-icon {
+	display: flex;
+	flex-shrink: 0;
+	color: var(--wp--custom--color--text-muted);
+}
+
+.shop-controls__search-icon .boxara-icon {
+	width: 16px;
+	height: 16px;
+}
+
+.shop-controls__search input[type="search"] {
+	flex: 1 0 0;
+	min-width: 0;
+	border: none;
+	background: none;
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--custom--font-size--body-xs);
+	color: var(--wp--custom--color--text-primary);
+}
+
+.shop-controls__search input[type="search"]::placeholder {
+	color: var(--wp--custom--color--text-muted);
+}
+
+.shop-controls__search input[type="search"]:focus {
+	outline: none;
+}
+
+/* -------------------------------------------------------------------------
+ * Product grid
+ * ---------------------------------------------------------------------- */
+
+ul.products {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--wp--preset--spacing--16);
+	margin: 0;
+	padding: 0 var(--wp--preset--spacing--24) var(--wp--preset--spacing--40);
+	list-style: none;
+}
+
+.shop-product {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	border: 1px solid var(--wp--custom--color--stroke-muted);
+	border-radius: var(--wp--custom--radius--md);
+	background-color: var(--wp--custom--color--bg-secondary);
+}
+
+.shop-product__image {
+	display: block;
+	aspect-ratio: 4 / 3;
+}
+
+.shop-product__image img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.shop-product__info {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--8);
+	padding: var(--wp--preset--spacing--12);
+}
+
+.shop-product__meta {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--4);
+}
+
+.shop-product__category {
+	font-family: var(--wp--preset--font-family--label);
+	font-size: var(--wp--custom--font-size--body-3-xs);
+	font-weight: 700;
+	letter-spacing: var(--wp--custom--letter-spacing--wide);
+	color: var(--wp--custom--color--brand-primary);
+}
+
+.shop-product__name {
+	overflow: hidden;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--custom--font-size--heading-xs);
+	letter-spacing: var(--wp--custom--letter-spacing--tight);
+	color: var(--wp--custom--color--text-primary);
+	text-decoration: none;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.shop-product__name:hover,
+.shop-product__name:focus-visible {
+	color: var(--wp--custom--color--brand-primary);
+}
+
+.shop-product__footer {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--8);
+}
+
+.shop-product__price {
+	font-family: var(--wp--preset--font-family--label);
+	font-size: var(--wp--custom--font-size--body-xs);
+	font-weight: 700;
+	color: var(--wp--custom--color--text-tertiary);
+}
+
+.shop-product__price .woocommerce-Price-amount {
+	color: inherit;
+}
+
+.shop-product__price del {
+	opacity: 0.6;
+}
+
+/*
+ * Plain `a` on purpose, not `.add_to_cart_button`: WooCommerce drops that
+ * class for out-of-stock products (see woocommerce_template_loop_add_to_cart
+ * defaults), leaving a bare link that otherwise falls back to style.css's
+ * generic blue `a { color }` — every link in this slot should look like a
+ * button regardless of stock status.
+ */
+.shop-product__cta a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: var(--wp--preset--spacing--8) var(--wp--preset--spacing--12);
+	border: none;
+	border-radius: var(--wp--custom--radius--xs);
+	background-color: var(--wp--custom--color--brand-primary);
+	color: var(--wp--preset--color--white);
+	font-family: var(--wp--preset--font-family--label);
+	font-size: var(--wp--custom--font-size--label-sm);
+	font-weight: 700;
+	text-align: center;
+	text-decoration: none;
+	transition: background-color 0.18s ease;
+}
+
+.shop-product__cta a:hover,
+.shop-product__cta a:focus-visible {
+	background-color: var(--wp--custom--color--brand-dark);
+}
+
+.shop-product__cta .added_to_cart {
+	display: block;
+	margin-top: var(--wp--preset--spacing--4);
+	font-size: var(--wp--custom--font-size--body-3-xs);
+	color: var(--wp--custom--color--text-muted);
+	text-align: center;
+}
+
+/* -------------------------------------------------------------------------
+ * Load more
+ * ---------------------------------------------------------------------- */
+
+.shop-pagination {
+	display: flex;
+	padding: 0 var(--wp--preset--spacing--24) var(--wp--preset--spacing--64);
+}
+
+.shop-pagination__link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: var(--wp--preset--spacing--16) var(--wp--preset--spacing--32);
+	border: 1px solid var(--wp--custom--color--stroke-warm);
+	border-radius: var(--wp--custom--radius--xs);
+	font-family: var(--wp--preset--font-family--label);
+	font-size: var(--wp--custom--font-size--body-sm);
+	font-weight: 700;
+	letter-spacing: var(--wp--custom--letter-spacing--tight);
+	color: var(--wp--custom--color--text-primary);
+	text-decoration: none;
+	transition: border-color 0.18s ease;
+}
+
+.shop-pagination__link:hover,
+.shop-pagination__link:focus-visible {
+	border-color: var(--wp--custom--color--text-primary);
+}
+
+.shop-pagination.is-loading .shop-pagination__link {
+	opacity: 0.6;
+	pointer-events: none;
+}
+
+/* -------------------------------------------------------------------------
+ * Notices ("no products found", search/cart messages)
+ * ---------------------------------------------------------------------- */
+
+.woocommerce-notices-wrapper {
+	padding: 0 var(--wp--preset--spacing--24);
+}
+
+.woocommerce-info,
+.woocommerce-message,
+.woocommerce-error {
+	margin: 0 0 var(--wp--preset--spacing--24);
+	padding: var(--wp--preset--spacing--16) var(--wp--preset--spacing--20);
+	list-style: none;
+	border: 1px solid var(--wp--custom--color--stroke-muted);
+	border-radius: var(--wp--custom--radius--sm);
+	background-color: var(--wp--custom--color--bg-secondary);
+	font-size: var(--wp--custom--font-size--body-sm);
+	color: var(--wp--custom--color--text-secondary);
+}
+
+.woocommerce-error {
+	border-color: var(--wp--custom--color--brand-primary);
+}
+
+/* -------------------------------------------------------------------------
+ * Desktop
+ * ---------------------------------------------------------------------- */
+
+@media (min-width: 900px) {
+
+	.shop-hero {
+		gap: var(--wp--preset--spacing--16);
+		padding: var(--wp--preset--spacing--80) var(--wp--custom--container--gutter-desktop) var(--wp--preset--spacing--40);
+	}
+
+	.shop-hero__eyebrow {
+		font-size: var(--wp--custom--font-size--display-md);
+	}
+
+	.shop-hero__title {
+		font-size: var(--wp--custom--font-size--display-sm);
+		white-space: nowrap;
+	}
+
+	.shop-hero__row {
+		flex-direction: row;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: var(--wp--preset--spacing--16);
+	}
+
+	.shop-hero__desc {
+		max-width: 34ch;
+		flex-shrink: 0;
+	}
+
+	.shop-controls {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		padding: var(--wp--preset--spacing--24) var(--wp--custom--container--gutter-desktop) var(--wp--preset--spacing--48);
+	}
+
+	.shop-tabs {
+		overflow: visible;
+	}
+
+	.shop-controls__right {
+		width: 480px;
+		flex-shrink: 0;
+		gap: var(--wp--preset--spacing--16);
+	}
+
+	.shop-controls__search {
+		padding: var(--wp--preset--spacing--16) var(--wp--preset--spacing--20);
+	}
+
+	.shop-controls__filter {
+		padding: var(--wp--preset--spacing--16) var(--wp--preset--spacing--24);
+	}
+
+	ul.products {
+		grid-template-columns: repeat(4, 1fr);
+		gap: var(--wp--preset--spacing--24);
+		padding: 0 var(--wp--custom--container--gutter-desktop) var(--wp--preset--spacing--80);
+	}
+
+	.shop-product__info {
+		gap: var(--wp--preset--spacing--16);
+		padding: var(--wp--preset--spacing--20);
+	}
+
+	.shop-product__category {
+		font-size: var(--wp--custom--font-size--label-sm);
+	}
+
+	.shop-product__name {
+		font-size: var(--wp--custom--font-size--heading-sm);
+	}
+
+	.shop-product__footer {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--wp--preset--spacing--12);
+	}
+
+	.shop-product__price {
+		font-size: var(--wp--custom--font-size--body-xs);
+	}
+
+	.shop-product__cta a {
+		width: auto;
+		padding: var(--wp--preset--spacing--12) var(--wp--preset--spacing--16);
+	}
+
+	.shop-pagination {
+		justify-content: center;
+		padding: 0 var(--wp--custom--container--gutter-desktop) var(--wp--preset--spacing--96);
+	}
+
+	.shop-pagination__link {
+		width: 100%;
+	}
+}

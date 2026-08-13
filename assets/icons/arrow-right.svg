@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Icon-arrow-right" clip-path="url(#clip0_0_4)">
+<path id="glyph" fill="currentColor" d="M15.6652 8.9413C16.1116 8.42067 16.1116 7.57517 15.6652 7.05454L9.95056 0.390472C9.5041 -0.130157 8.77906 -0.130157 8.33261 0.390472C7.88615 0.911102 7.88615 1.75661 8.33261 2.27724L12.1007 6.66719H1.14292C0.510743 6.66719 0 7.26279 0 8C0 8.73721 0.510743 9.33281 1.14292 9.33281H12.0971L8.33618 13.7228C7.88973 14.2434 7.88973 15.0889 8.33618 15.6095C8.78263 16.1302 9.50767 16.1302 9.95413 15.6095L15.6687 8.94546L15.6652 8.9413Z"/>
+</g>
+<defs>
+<clipPath id="clip0_0_4">
+<rect width="16" height="16" fill="white"/>
+</clipPath>
+</defs>
+</svg>

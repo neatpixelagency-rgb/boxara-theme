@@ -46,12 +46,30 @@ function boxara_setup() {
 		*/
 	add_theme_support( 'post-thumbnails' );
 
-	// This theme uses wp_nav_menu() in one location.
+	// Navigation menus: one primary, three footer columns, plus a legal bar.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__( 'Primary', 'boxara' ),
+			'menu-1'         => esc_html__( 'Primary', 'boxara' ),
+			'footer-shop'    => esc_html__( 'Footer — Shop', 'boxara' ),
+			'footer-company' => esc_html__( 'Footer — Company', 'boxara' ),
+			'footer-help'    => esc_html__( 'Footer — Help', 'boxara' ),
+			'footer-legal'   => esc_html__( 'Footer — Legal', 'boxara' ),
 		)
 	);
+
+	// Block editor: let patterns and blocks span the full viewport width.
+	add_theme_support( 'align-wide' );
+	add_theme_support( 'responsive-embeds' );
+
+	// Load the editor stylesheet so patterns look right inside wp-admin too.
+	add_theme_support( 'editor-styles' );
+	add_editor_style( 'assets/css/home.css' );
+
+	// WooCommerce. Declared here so Woo does not flag the theme as unsupported.
+	add_theme_support( 'woocommerce' );
+	add_theme_support( 'wc-product-gallery-zoom' );
+	add_theme_support( 'wc-product-gallery-lightbox' );
+	add_theme_support( 'wc-product-gallery-slider' );
 
 	/*
 		* Switch default core markup for search form, comment form, and comments
@@ -115,6 +133,27 @@ function boxara_content_width() {
 add_action( 'after_setup_theme', 'boxara_content_width', 0 );
 
 /**
+ * Register the pattern category the homepage sections are grouped under.
+ *
+ * Pattern files themselves live in /patterns/ and are registered automatically
+ * by WordPress — there is nothing to add here when a new section is created.
+ */
+function boxara_register_pattern_categories() {
+	if ( ! function_exists( 'register_block_pattern_category' ) ) {
+		return;
+	}
+
+	register_block_pattern_category(
+		'boxara-home',
+		array(
+			'label'       => esc_html__( 'Boxara — Homepage', 'boxara' ),
+			'description' => esc_html__( 'Sections for building the Boxara homepage.', 'boxara' ),
+		)
+	);
+}
+add_action( 'init', 'boxara_register_pattern_categories' );
+
+/**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
@@ -141,13 +180,104 @@ function boxara_scripts() {
 	wp_enqueue_style( 'boxara-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'boxara-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'boxara-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	// Header, footer and mobile drawer styles.
+	wp_enqueue_style(
+		'boxara-chrome',
+		get_theme_file_uri( '/assets/css/site-chrome.css' ),
+		array( 'boxara-style' ),
+		_S_VERSION
+	);
+
+	// Homepage section styles. Also loaded as an editor stylesheet in boxara_setup().
+	wp_enqueue_style(
+		'boxara-home',
+		get_theme_file_uri( '/assets/css/home.css' ),
+		array( 'boxara-chrome' ),
+		_S_VERSION
+	);
+
+	// Shop and category archive styles + AJAX "load more".
+	if ( function_exists( 'is_shop' ) && ( is_shop() || is_product_taxonomy() ) ) {
+		wp_enqueue_style(
+			'boxara-shop',
+			get_theme_file_uri( '/assets/css/shop.css' ),
+			array( 'boxara-chrome' ),
+			_S_VERSION
+		);
+
+		wp_enqueue_script(
+			'boxara-shop',
+			get_theme_file_uri( '/assets/js/shop.js' ),
+			array(),
+			_S_VERSION,
+			true
+		);
+
+		wp_localize_script(
+			'boxara-shop',
+			'boxaraShop',
+			array(
+				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+				'nonce'   => wp_create_nonce( 'boxara_load_more_products' ),
+				'strings' => array(
+					'loading' => esc_html__( 'Učitavanje…', 'boxara' ),
+				),
+			)
+		);
+	}
+
+	// Single product page.
+	if ( function_exists( 'is_product' ) && is_product() ) {
+		// Related products reuse woocommerce/content-product.php — the same
+		// card template the shop archive uses — so its styling (shop.css)
+		// has to load here too, not just on the archive.
+		wp_enqueue_style(
+			'boxara-shop',
+			get_theme_file_uri( '/assets/css/shop.css' ),
+			array( 'boxara-chrome' ),
+			_S_VERSION
+		);
+
+		wp_enqueue_style(
+			'boxara-product',
+			get_theme_file_uri( '/assets/css/product.css' ),
+			array( 'boxara-shop' ),
+			_S_VERSION
+		);
+
+		wp_enqueue_script(
+			'boxara-product',
+			get_theme_file_uri( '/assets/js/product.js' ),
+			array( 'wc-add-to-cart-variation' ),
+			_S_VERSION,
+			true
+		);
+	}
+
+	// Replaces the Underscores navigation script — our drawer has its own behaviour.
+	wp_enqueue_script(
+		'boxara-chrome',
+		get_theme_file_uri( '/assets/js/site-chrome.js' ),
+		array(),
+		_S_VERSION,
+		true
+	);
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'boxara_scripts' );
+
+/**
+ * Inline SVG icon helper.
+ */
+require get_template_directory() . '/inc/icons.php';
+
+/**
+ * Header and footer helpers.
+ */
+require get_template_directory() . '/inc/site-chrome.php';
 
 /**
  * Implement the Custom Header feature.
@@ -168,6 +298,11 @@ require get_template_directory() . '/inc/template-functions.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Homepage newsletter signup.
+ */
+require get_template_directory() . '/inc/newsletter.php';
 
 /**
  * Load Jetpack compatibility file.

@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Icon-mail-orange" clip-path="url(#clip0_0_4)">
+<path id="glyph" fill="currentColor" d="M6 6C5.175 6 4.5 6.9 4.5 8V10.7625L20.6719 28.4625C22.6125 30.5875 25.3969 30.5875 27.3375 28.4625L43.5 10.7625V8C43.5 6.9 42.825 6 42 6H6ZM4.5 18.525V40C4.5 41.1 5.175 42 6 42H42C42.825 42 43.5 41.1 43.5 40V18.525L30.1875 33.1C26.5875 37.0375 21.4031 37.0375 17.8125 33.1L4.5 18.525ZM0 8C0 3.5875 2.69063 0 6 0H42C45.3094 0 48 3.5875 48 8V40C48 44.4125 45.3094 48 42 48H6C2.69063 48 0 44.4125 0 40V8Z"/>
+</g>
+<defs>
+<clipPath id="clip0_0_4">
+<rect width="48" height="48"/>
+</clipPath>
+</defs>
+</svg>

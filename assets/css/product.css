@@ -1,0 +1,510 @@
+/**
+ * Single product page (woocommerce/content-single-product.php,
+ * woocommerce/single-product/add-to-cart/variable.php). Same conventions
+ * as home.css/shop.css: mobile first, 900px breakpoint switches to the
+ * 1440 desktop design, every value comes from theme.json.
+ *
+ * @package Boxara
+ */
+
+body.single-product {
+	background-color: var(--wp--custom--color--bg-primary);
+}
+
+.single-product .site-main {
+	max-width: none;
+	padding: 0;
+	margin: 0;
+}
+
+.single-product .woocommerce-breadcrumb {
+	padding: var(--wp--preset--spacing--16) var(--wp--preset--spacing--24) 0;
+	font-size: var(--wp--custom--font-size--body-xs);
+	color: var(--wp--custom--color--text-muted);
+}
+
+.single-product .woocommerce-breadcrumb a {
+	color: var(--wp--custom--color--text-muted);
+}
+
+.single-product .woocommerce-breadcrumb a:hover,
+.single-product .woocommerce-breadcrumb a:focus-visible {
+	color: var(--wp--custom--color--brand-primary);
+}
+
+/* -------------------------------------------------------------------------
+ * Hero — gallery + summary
+ * ---------------------------------------------------------------------- */
+
+.shop-product-page__hero {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--24);
+	padding: var(--wp--preset--spacing--24);
+}
+
+/* Gallery: real WooCommerce markup (zoom/lightbox JS already wired via
+   theme support), restyled to the Figma large-stage-plus-thumbs layout.
+   The thumbnail rail only exists once a product has gallery images beyond
+   its featured image — none do yet, so it's unverified against real data. */
+.woocommerce-product-gallery {
+	position: relative;
+}
+
+.woocommerce-product-gallery__wrapper {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.woocommerce-product-gallery__image {
+	border: 1px solid var(--wp--custom--color--stroke-warm);
+	border-radius: var(--wp--custom--radius--lg);
+	overflow: hidden;
+	aspect-ratio: 1 / 1;
+}
+
+.woocommerce-product-gallery__image img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.woocommerce-product-gallery__trigger {
+	display: none;
+}
+
+.flex-control-thumbs {
+	display: flex;
+	gap: var(--wp--preset--spacing--16);
+	margin: var(--wp--preset--spacing--16) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.flex-control-thumbs li {
+	width: 88px;
+	height: 88px;
+}
+
+.flex-control-thumbs img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border: 1px solid var(--wp--custom--color--stroke-muted);
+	border-radius: var(--wp--custom--radius--md);
+	opacity: 0.7;
+	cursor: pointer;
+}
+
+.flex-control-thumbs img.flex-active {
+	border-color: var(--wp--custom--color--brand-primary);
+	border-width: 2px;
+	opacity: 1;
+}
+
+/* Summary column */
+
+.shop-product-page__summary {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--24);
+}
+
+.shop-product-page__header {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--8);
+}
+
+.shop-product-page__eyebrow {
+	display: flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--12);
+	margin: 0;
+	font-family: var(--wp--preset--font-family--label);
+	font-size: var(--wp--custom--font-size--body-3-xs);
+	font-weight: 700;
+	letter-spacing: var(--wp--custom--letter-spacing--ultra-wide);
+}
+
+.shop-product-page__eyebrow-collection {
+	color: var(--wp--custom--color--brand-primary);
+	white-space: nowrap;
+}
+
+.shop-product-page__eyebrow-divider {
+	width: 24px;
+	height: 1px;
+	flex-shrink: 0;
+	background-color: var(--wp--custom--color--brand-primary);
+}
+
+.shop-product-page__eyebrow-tag {
+	color: var(--wp--custom--color--text-muted);
+	font-weight: 400;
+	letter-spacing: var(--wp--custom--letter-spacing--super-caps);
+	white-space: nowrap;
+}
+
+.shop-product-page__title {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--custom--font-size--display-xl);
+	line-height: 1;
+	color: var(--wp--custom--color--text-primary);
+}
+
+.shop-product-page__signature {
+	display: flex;
+	align-items: baseline;
+	gap: var(--wp--preset--spacing--12);
+	margin: 0;
+	font-size: var(--wp--custom--font-size--body-sm);
+	color: var(--wp--custom--color--text-tertiary);
+}
+
+.shop-product-page__signature span {
+	font-family: var(--wp--preset--font-family--accent);
+	font-size: var(--wp--custom--font-size--heading-2-xs);
+	color: var(--wp--custom--color--brand-primary);
+}
+
+.shop-product-page__price-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--wp--preset--spacing--12);
+}
+
+.shop-product-page__price {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--custom--font-size--heading-xl);
+	color: var(--wp--custom--color--text-primary);
+}
+
+.shop-product-page__price ins {
+	text-decoration: none;
+}
+
+.shop-product-page__price del {
+	margin-inline-end: var(--wp--preset--spacing--8);
+	font-size: var(--wp--custom--font-size--body-base);
+	opacity: 0.6;
+}
+
+.shop-product-page__sold {
+	display: flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--8);
+	flex-shrink: 0;
+	font-size: var(--wp--custom--font-size--body-2-xs);
+	letter-spacing: var(--wp--custom--letter-spacing--wide);
+	color: var(--wp--custom--color--text-muted);
+	white-space: nowrap;
+}
+
+.shop-product-page__sold-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: var(--wp--custom--color--brand-primary);
+}
+
+.shop-product-page__desc {
+	font-size: var(--wp--custom--font-size--body-sm);
+	line-height: 1.6;
+	color: var(--wp--custom--color--text-secondary);
+}
+
+.shop-product-page__desc p {
+	margin: 0 0 var(--wp--preset--spacing--12);
+}
+
+.shop-product-page__desc p:last-child {
+	margin-bottom: 0;
+}
+
+/* Swatches */
+
+.shop-product-page__swatches {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--16);
+}
+
+.shop-product-page__swatches-label {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--label);
+	font-size: var(--wp--custom--font-size--label-sm);
+	font-weight: 700;
+	letter-spacing: var(--wp--custom--letter-spacing--ultra-wide);
+	text-transform: uppercase;
+	color: var(--wp--custom--color--text-muted);
+}
+
+.shop-product-page__swatches-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--12);
+}
+
+.shop-product-page__swatch {
+	width: 36px;
+	height: 32px;
+	padding: 0;
+	border: 1px solid var(--wp--custom--color--stroke-muted);
+	border-radius: var(--wp--custom--radius--md);
+	cursor: pointer;
+	transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.shop-product-page__swatch:hover,
+.shop-product-page__swatch:focus-visible {
+	transform: translateY(-1px);
+}
+
+.shop-product-page__swatch.is-active {
+	border-width: 2px;
+	border-color: var(--wp--custom--color--brand-primary);
+}
+
+.shop-product-page__swatches-selected {
+	margin: calc(var(--wp--preset--spacing--16) * -1) 0 0;
+	min-height: 1em;
+	font-size: var(--wp--custom--font-size--body-xs);
+	color: var(--wp--custom--color--text-tertiary);
+}
+
+/* Cart form — both simple.php and variation-add-to-cart-button.php use
+   these same classes. */
+
+.shop-product-page__cart .quantity {
+	/*
+	 * !important is load-bearing here, not laziness: once a variation
+	 * matches, WooCommerce's own onFoundVariation() calls jQuery's
+	 * $qty.show(), which sets an *inline* display style. Inline styles
+	 * beat any external stylesheet rule regardless of specificity, so
+	 * without !important the box reappears the moment a colour is picked.
+	 *
+	 * Not in the Figma design and the button is full width there; quantity
+	 * can still be changed on the cart page. The input stays in the DOM
+	 * (default value 1) so the form still submits correctly.
+	 */
+	display: none !important;
+}
+
+.shop-product-page__cart .single_add_to_cart_button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--32);
+	border: none;
+	border-radius: var(--wp--custom--radius--sm);
+	background-color: var(--wp--custom--color--brand-primary);
+	color: var(--wp--preset--color--white);
+	font-family: var(--wp--preset--font-family--label);
+	font-size: var(--wp--custom--font-size--label-md);
+	font-weight: 800;
+	letter-spacing: var(--wp--custom--letter-spacing--wide);
+	text-transform: uppercase;
+	text-align: center;
+	cursor: pointer;
+	transition: background-color 0.18s ease;
+}
+
+.shop-product-page__cart .single_add_to_cart_button:hover,
+.shop-product-page__cart .single_add_to_cart_button:focus-visible {
+	background-color: var(--wp--custom--color--brand-dark);
+}
+
+.shop-product-page__cart .single_add_to_cart_button.disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.shop-product-page__cart .stock.out-of-stock {
+	margin: 0 0 var(--wp--preset--spacing--16);
+	font-size: var(--wp--custom--font-size--body-sm);
+	color: var(--wp--custom--color--brand-primary);
+}
+
+.shop-product-page__cart .woocommerce-variation-price {
+	margin-bottom: var(--wp--preset--spacing--12);
+	font-size: var(--wp--custom--font-size--body-sm);
+	color: var(--wp--custom--color--text-secondary);
+}
+
+.shop-product-page__cart .woocommerce-variation-availability {
+	margin-bottom: var(--wp--preset--spacing--12);
+}
+
+/* Sale flash — not in the design, but real/useful; kept, just fit to the
+   dark theme instead of WooCommerce's default red-on-white. */
+.onsale {
+	position: absolute;
+	top: var(--wp--preset--spacing--16);
+	left: var(--wp--preset--spacing--16);
+	z-index: 2;
+	padding: var(--wp--preset--spacing--4) var(--wp--preset--spacing--12);
+	border-radius: var(--wp--custom--radius--pill);
+	background-color: var(--wp--custom--color--brand-primary);
+	color: var(--wp--preset--color--white);
+	font-family: var(--wp--preset--font-family--label);
+	font-size: var(--wp--custom--font-size--label-sm);
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+/* -------------------------------------------------------------------------
+ * Specs
+ * ---------------------------------------------------------------------- */
+
+.shop-product-page__specs {
+	background-color: var(--wp--custom--color--bg-secondary);
+	border-top: 1px solid var(--wp--custom--color--stroke-muted);
+	border-bottom: 1px solid var(--wp--custom--color--stroke-muted);
+	padding: var(--wp--preset--spacing--32) var(--wp--preset--spacing--24);
+}
+
+.shop-product-page__specs-title {
+	margin: 0 0 var(--wp--preset--spacing--24);
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--custom--font-size--heading-sm);
+	color: var(--wp--custom--color--text-primary);
+}
+
+.shop-product-page__specs-grid {
+	display: flex;
+	flex-direction: column;
+}
+
+.shop-product-page__spec-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--wp--preset--spacing--16);
+	padding: var(--wp--preset--spacing--16) 0;
+	border-bottom: 1px solid var(--wp--custom--color--stroke-muted);
+}
+
+.shop-product-page__spec-row:last-child {
+	border-bottom: none;
+}
+
+.shop-product-page__spec-label {
+	flex-shrink: 0;
+	font-family: var(--wp--preset--font-family--label);
+	font-size: var(--wp--custom--font-size--body-3-xs);
+	font-weight: 700;
+	letter-spacing: var(--wp--custom--letter-spacing--ultra-wide);
+	color: var(--wp--custom--color--text-muted);
+}
+
+.shop-product-page__spec-value {
+	text-align: right;
+	font-size: var(--wp--custom--font-size--body-xs);
+	color: var(--wp--custom--color--text-primary);
+}
+
+/* -------------------------------------------------------------------------
+ * Related products — reuses shop-product card styling via shop.css classes
+ * on the <li>; WooCommerce's related-products template already wraps
+ * output in ul.products, same as the archive loop.
+ * ---------------------------------------------------------------------- */
+
+.shop-product-page__related {
+	padding: var(--wp--preset--spacing--64) var(--wp--preset--spacing--24) var(--wp--preset--spacing--64);
+}
+
+.shop-product-page__related .related > h2 {
+	margin: 0 0 var(--wp--preset--spacing--24);
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--custom--font-size--heading-xl);
+	letter-spacing: var(--wp--custom--letter-spacing--wide);
+	color: var(--wp--custom--color--text-primary);
+}
+
+.shop-product-page__related ul.products {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--wp--preset--spacing--16);
+	padding: 0;
+}
+
+/* -------------------------------------------------------------------------
+ * Desktop
+ * ---------------------------------------------------------------------- */
+
+@media (min-width: 900px) {
+
+	.single-product .woocommerce-breadcrumb {
+		padding: var(--wp--preset--spacing--24) var(--wp--custom--container--gutter-desktop) 0;
+	}
+
+	.shop-product-page__hero {
+		flex-direction: row;
+		gap: var(--wp--custom--container--gutter-desktop);
+		padding: var(--wp--custom--container--gutter-desktop);
+	}
+
+	.shop-product-page__gallery,
+	.shop-product-page__summary {
+		flex: 1 0 0;
+		min-width: 0;
+	}
+
+	.woocommerce-product-gallery__image {
+		aspect-ratio: auto;
+		height: 580px;
+	}
+
+	.flex-control-thumbs li {
+		width: 110px;
+		height: 110px;
+	}
+
+	.shop-product-page__title {
+		font-size: var(--wp--custom--font-size--display-2-xl);
+	}
+
+	.shop-product-page__price {
+		font-size: 36px;
+	}
+
+	.shop-product-page__specs {
+		padding: var(--wp--custom--container--gutter-desktop);
+	}
+
+	.shop-product-page__specs-title {
+		font-size: var(--wp--custom--font-size--heading-lg);
+	}
+
+	/* Figma splits specs into two explicit columns (3 rows each); the PHP
+	   side just outputs a flat list, so column-count balances it into the
+	   same two-column look without needing to pre-split the array. */
+	.shop-product-page__specs-grid {
+		column-count: 2;
+		column-gap: var(--wp--preset--spacing--40);
+	}
+
+	.shop-product-page__spec-row {
+		break-inside: avoid;
+	}
+
+	.shop-product-page__cart {
+		max-width: 420px;
+	}
+
+	.shop-product-page__related {
+		padding: var(--wp--preset--spacing--80) var(--wp--custom--container--gutter-desktop) var(--wp--preset--spacing--96);
+	}
+
+	.shop-product-page__related ul.products {
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--wp--preset--spacing--24);
+	}
+}

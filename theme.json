@@ -1,0 +1,692 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"useRootPaddingAwareAlignments": true,
+		"layout": {
+			"contentSize": "1280px",
+			"wideSize": "1440px"
+		},
+		"color": {
+			"custom": false,
+			"customDuotone": false,
+			"customGradient": false,
+			"defaultDuotone": false,
+			"defaultGradients": false,
+			"defaultPalette": false,
+			"palette": [
+				{
+					"slug": "brand",
+					"name": "Boxara Orange",
+					"color": "#eb5a1c"
+				},
+				{
+					"slug": "ink",
+					"name": "Ink",
+					"color": "#0a0a0a"
+				},
+				{
+					"slug": "charcoal",
+					"name": "Charcoal",
+					"color": "#171717"
+				},
+				{
+					"slug": "raised",
+					"name": "Raised",
+					"color": "#121212"
+				},
+				{
+					"slug": "white",
+					"name": "White",
+					"color": "#ffffff"
+				},
+				{
+					"slug": "paper",
+					"name": "Paper",
+					"color": "#c0beb4"
+				},
+				{
+					"slug": "stone",
+					"name": "Stone",
+					"color": "#a8a59d"
+				},
+				{
+					"slug": "ash",
+					"name": "Ash",
+					"color": "#908e87"
+				}
+			]
+		},
+		"typography": {
+			"customFontSize": false,
+			"defaultFontSizes": false,
+			"fluid": true,
+			"dropCap": false,
+			"lineHeight": true,
+			"fontFamilies": [
+				{
+					"slug": "display",
+					"name": "Display",
+					"fontFamily": "\"Bebas Neue\", Impact, sans-serif",
+					"fontFace": [
+						{
+							"fontFamily": "Bebas Neue",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
+							"src": [
+								"file:./assets/fonts/bebas-neue-latin-400.woff2"
+							]
+						},
+						{
+							"fontFamily": "Bebas Neue",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/bebas-neue-latin-ext-400.woff2"
+							]
+						}
+					]
+				},
+				{
+					"slug": "body",
+					"name": "Body",
+					"fontFamily": "Manrope, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+					"fontFace": [
+						{
+							"fontFamily": "Manrope",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
+							"src": [
+								"file:./assets/fonts/manrope-latin-400.woff2"
+							]
+						},
+						{
+							"fontFamily": "Manrope",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/manrope-latin-ext-400.woff2"
+							]
+						},
+						{
+							"fontFamily": "Manrope",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116",
+							"src": [
+								"file:./assets/fonts/manrope-cyrillic-400.woff2"
+							]
+						},
+						{
+							"fontFamily": "Manrope",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
+							"src": [
+								"file:./assets/fonts/manrope-latin-600.woff2"
+							]
+						},
+						{
+							"fontFamily": "Manrope",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/manrope-latin-ext-600.woff2"
+							]
+						},
+						{
+							"fontFamily": "Manrope",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116",
+							"src": [
+								"file:./assets/fonts/manrope-cyrillic-600.woff2"
+							]
+						},
+						{
+							"fontFamily": "Manrope",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
+							"src": [
+								"file:./assets/fonts/manrope-latin-700.woff2"
+							]
+						},
+						{
+							"fontFamily": "Manrope",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/manrope-latin-ext-700.woff2"
+							]
+						},
+						{
+							"fontFamily": "Manrope",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116",
+							"src": [
+								"file:./assets/fonts/manrope-cyrillic-700.woff2"
+							]
+						}
+					]
+				},
+				{
+					"slug": "label",
+					"name": "Label",
+					"fontFamily": "Montserrat, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+					"fontFace": [
+						{
+							"fontFamily": "Montserrat",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
+							"src": [
+								"file:./assets/fonts/montserrat-latin-400.woff2"
+							]
+						},
+						{
+							"fontFamily": "Montserrat",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/montserrat-latin-ext-400.woff2"
+							]
+						},
+						{
+							"fontFamily": "Montserrat",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116",
+							"src": [
+								"file:./assets/fonts/montserrat-cyrillic-400.woff2"
+							]
+						},
+						{
+							"fontFamily": "Montserrat",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
+							"src": [
+								"file:./assets/fonts/montserrat-latin-600.woff2"
+							]
+						},
+						{
+							"fontFamily": "Montserrat",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/montserrat-latin-ext-600.woff2"
+							]
+						},
+						{
+							"fontFamily": "Montserrat",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116",
+							"src": [
+								"file:./assets/fonts/montserrat-cyrillic-600.woff2"
+							]
+						},
+						{
+							"fontFamily": "Montserrat",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
+							"src": [
+								"file:./assets/fonts/montserrat-latin-700.woff2"
+							]
+						},
+						{
+							"fontFamily": "Montserrat",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/montserrat-latin-ext-700.woff2"
+							]
+						},
+						{
+							"fontFamily": "Montserrat",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116",
+							"src": [
+								"file:./assets/fonts/montserrat-cyrillic-700.woff2"
+							]
+						},
+						{
+							"fontFamily": "Montserrat",
+							"fontStyle": "normal",
+							"fontWeight": "800",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
+							"src": [
+								"file:./assets/fonts/montserrat-latin-800.woff2"
+							]
+						},
+						{
+							"fontFamily": "Montserrat",
+							"fontStyle": "normal",
+							"fontWeight": "800",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/montserrat-latin-ext-800.woff2"
+							]
+						},
+						{
+							"fontFamily": "Montserrat",
+							"fontStyle": "normal",
+							"fontWeight": "800",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116",
+							"src": [
+								"file:./assets/fonts/montserrat-cyrillic-800.woff2"
+							]
+						}
+					]
+				},
+				{
+					"slug": "accent",
+					"name": "Accent Script",
+					"fontFamily": "Allison, cursive",
+					"fontFace": [
+						{
+							"fontFamily": "Allison",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
+							"src": [
+								"file:./assets/fonts/allison-latin-400.woff2"
+							]
+						},
+						{
+							"fontFamily": "Allison",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF",
+							"src": [
+								"file:./assets/fonts/allison-latin-ext-400.woff2"
+							]
+						}
+					]
+				}
+			],
+			"fontSizes": [
+				{
+					"slug": "display-xl",
+					"name": "Display XL",
+					"size": "88px",
+					"fluid": {
+						"min": "44px",
+						"max": "88px"
+					}
+				},
+				{
+					"slug": "display-lg",
+					"name": "Display Large",
+					"size": "64px",
+					"fluid": {
+						"min": "36px",
+						"max": "64px"
+					}
+				},
+				{
+					"slug": "display-md",
+					"name": "Display Medium",
+					"size": "48px",
+					"fluid": {
+						"min": "32px",
+						"max": "48px"
+					}
+				},
+				{
+					"slug": "heading-lg",
+					"name": "Heading Large",
+					"size": "32px",
+					"fluid": {
+						"min": "26px",
+						"max": "32px"
+					}
+				},
+				{
+					"slug": "heading-md",
+					"name": "Heading Medium",
+					"size": "24px",
+					"fluid": {
+						"min": "20px",
+						"max": "24px"
+					}
+				},
+				{
+					"slug": "body-lg",
+					"name": "Body Large",
+					"size": "18px",
+					"fluid": {
+						"min": "17px",
+						"max": "18px"
+					}
+				},
+				{
+					"slug": "body-md",
+					"name": "Body",
+					"size": "16px",
+					"fluid": false
+				},
+				{
+					"slug": "body-sm",
+					"name": "Body Small",
+					"size": "14px",
+					"fluid": false
+				}
+			]
+		},
+		"spacing": {
+			"customSpacingSize": false,
+			"defaultSpacingSizes": false,
+			"units": [
+				"px",
+				"rem",
+				"%",
+				"vw",
+				"vh"
+			],
+			"spacingSizes": [
+				{
+					"slug": "4",
+					"name": "4",
+					"size": "4px"
+				},
+				{
+					"slug": "8",
+					"name": "8",
+					"size": "8px"
+				},
+				{
+					"slug": "12",
+					"name": "12",
+					"size": "12px"
+				},
+				{
+					"slug": "16",
+					"name": "16",
+					"size": "16px"
+				},
+				{
+					"slug": "20",
+					"name": "20",
+					"size": "20px"
+				},
+				{
+					"slug": "24",
+					"name": "24",
+					"size": "24px"
+				},
+				{
+					"slug": "32",
+					"name": "32",
+					"size": "32px"
+				},
+				{
+					"slug": "40",
+					"name": "40",
+					"size": "40px"
+				},
+				{
+					"slug": "48",
+					"name": "48",
+					"size": "48px"
+				},
+				{
+					"slug": "64",
+					"name": "64",
+					"size": "64px"
+				},
+				{
+					"slug": "80",
+					"name": "80",
+					"size": "80px"
+				},
+				{
+					"slug": "96",
+					"name": "96",
+					"size": "96px"
+				}
+			]
+		},
+		"border": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		},
+		"custom": {
+			"color": {
+				"brand-primary": "#eb5a1c",
+				"brand-dark": "#e65103",
+				"brand-muted": "#471b08",
+				"brand-ink": "#0a0a0a",
+				"bg-primary": "#0a0a0a",
+				"bg-sunken": "#0d0d0d",
+				"bg-elevated": "#121212",
+				"bg-tertiary": "#141414",
+				"bg-secondary": "#171717",
+				"text-primary": "#ffffff",
+				"text-secondary": "#c0beb4",
+				"text-tertiary": "#a8a59d",
+				"text-muted": "#908e87",
+				"text-disabled": "#78766f",
+				"stroke-muted": "#1a1a1a",
+				"stroke-warm": "#484844",
+				"overlay": "#000000",
+				"accent-teal": "#034959",
+				"accent-crimson": "#74010e"
+			},
+			"font-size": {
+				"display-2xl": "88px",
+				"display-xl": "64px",
+				"display-lg": "56px",
+				"display-md": "48px",
+				"display-sm": "44px",
+				"display-base": "36px",
+				"heading-xl": "32px",
+				"heading-lg": "30px",
+				"heading-md": "28px",
+				"heading-sm": "24px",
+				"heading-xs": "20px",
+				"heading-2xs": "18px",
+				"body-lg": "18px",
+				"body-md": "16px",
+				"body-base": "15px",
+				"body-sm": "14px",
+				"body-xs": "13px",
+				"body-2xs": "12px",
+				"body-3xs": "11px",
+				"label-lg": "14px",
+				"label-md": "12px",
+				"label-sm": "11px"
+			},
+			"line-height": {
+				"tight": "16px",
+				"snug": "20px",
+				"base": "22px",
+				"relaxed": "24px",
+				"loose": "26px",
+				"spacious": "28px",
+				"heading-sm": "32px",
+				"heading-md": "36px",
+				"heading-lg": "40px",
+				"heading-xl": "44px",
+				"heading-2xl": "48px",
+				"display-sm": "56px",
+				"display-md": "58px",
+				"display-lg": "82px",
+				"flat": "1"
+			},
+			"letter-spacing": {
+				"none": "0",
+				"tight": "0.5px",
+				"base": "0.6px",
+				"wide": "1px",
+				"wider": "1.2px",
+				"widest": "1.5px",
+				"ultra-wide": "2px",
+				"caps": "2.4px",
+				"super-caps": "3px"
+			},
+			"radius": {
+				"xs": "2px",
+				"sm": "4px",
+				"md": "8px",
+				"lg": "12px",
+				"xl": "16px",
+				"2xl": "20px",
+				"3xl": "24px",
+				"pill": "9999px"
+			},
+			"container": {
+				"max": "1280px",
+				"gutter-mobile": "24px",
+				"gutter-desktop": "80px"
+			}
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--ink)",
+			"text": "var(--wp--preset--color--paper)"
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--body)",
+			"fontSize": "var(--wp--preset--font-size--body-md)",
+			"lineHeight": "1.625"
+		},
+		"spacing": {
+			"padding": {
+				"left": "var(--wp--custom--container--gutter-mobile)",
+				"right": "var(--wp--custom--container--gutter-mobile)"
+			},
+			"blockGap": "var(--wp--preset--spacing--24)"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--display)",
+					"fontWeight": "400",
+					"lineHeight": "1.05"
+				},
+				"color": {
+					"text": "var(--wp--preset--color--white)"
+				}
+			},
+			"h1": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--display-xl)"
+				}
+			},
+			"h2": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--display-lg)"
+				}
+			},
+			"h3": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--display-md)"
+				}
+			},
+			"h4": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--heading-lg)"
+				}
+			},
+			"h5": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--heading-md)"
+				}
+			},
+			"h6": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--label)",
+					"fontSize": "var(--wp--preset--font-size--body-sm)",
+					"fontWeight": "700",
+					"letterSpacing": "var(--wp--custom--letter-spacing--wide)",
+					"textTransform": "uppercase"
+				}
+			},
+			"link": {
+				"color": {
+					"text": "var(--wp--preset--color--brand)"
+				},
+				"typography": {
+					"textDecoration": "none"
+				},
+				":hover": {
+					"typography": {
+						"textDecoration": "underline"
+					}
+				}
+			},
+			"button": {
+				"color": {
+					"background": "var(--wp--preset--color--brand)",
+					"text": "var(--wp--preset--color--white)"
+				},
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--label)",
+					"fontSize": "var(--wp--preset--font-size--body-sm)",
+					"fontWeight": "700",
+					"letterSpacing": "var(--wp--custom--letter-spacing--wide)",
+					"textTransform": "uppercase"
+				},
+				"border": {
+					"radius": "var(--wp--custom--radius--sm)"
+				},
+				"spacing": {
+					"padding": {
+						"top": "var(--wp--preset--spacing--16)",
+						"bottom": "var(--wp--preset--spacing--16)",
+						"left": "var(--wp--preset--spacing--32)",
+						"right": "var(--wp--preset--spacing--32)"
+					}
+				},
+				":hover": {
+					"color": {
+						"background": "var(--wp--custom--color--brand-dark)"
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,530 @@
+/**
+ * Header, footer and mobile drawer.
+ *
+ * Every value here comes from theme.json — no raw hex, no magic numbers.
+ * Mobile first: base styles are the 375px design, the media query at 900px
+ * switches to the 1440px desktop design.
+ *
+ * @package Boxara
+ */
+
+/* -------------------------------------------------------------------------
+ * Icons
+ * ---------------------------------------------------------------------- */
+
+.boxara-icon {
+	display: block;
+	width: 100%;
+	height: 100%;
+	fill: currentColor;
+}
+
+/* -------------------------------------------------------------------------
+ * Header
+ * ---------------------------------------------------------------------- */
+
+.site-header {
+	background-color: var(--wp--custom--color--bg-primary);
+	position: relative;
+	z-index: 100;
+}
+
+.site-header__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--wp--preset--spacing--24);
+	padding: var(--wp--preset--spacing--24);
+}
+
+/* Logo ------------------------------------------------------------------ */
+
+.site-logo {
+	margin: 0;
+	line-height: 0;
+	font-size: 0;
+}
+
+.site-logo img,
+.site-logo .custom-logo {
+	display: block;
+	width: auto;
+	height: 32px;
+}
+
+.site-logo__text {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--custom--font-size--heading-md);
+	line-height: 1;
+	letter-spacing: var(--wp--custom--letter-spacing--wide);
+	color: var(--wp--custom--color--text-primary);
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+/* Primary nav ----------------------------------------------------------- */
+
+.site-header__nav {
+	display: none;
+}
+
+.nav-menu {
+	display: flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--40);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.nav-menu a {
+	display: block;
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--custom--font-size--body-sm);
+	font-weight: 600;
+	letter-spacing: var(--wp--custom--letter-spacing--tight);
+	line-height: 1;
+	color: var(--wp--custom--color--text-muted);
+	text-decoration: none;
+	white-space: nowrap;
+	transition: color 0.18s ease;
+}
+
+.nav-menu a:hover,
+.nav-menu a:focus-visible,
+.nav-menu .current-menu-item > a,
+.nav-menu .current_page_item > a,
+.nav-menu .current-menu-ancestor > a {
+	color: var(--wp--custom--color--brand-primary);
+}
+
+/* Dropdowns — "Prodavnica" has the product categories nested under it.
+   Hidden by default and revealed on hover/focus rather than always showing
+   the nested <ul> inline, which is wp_nav_menu()'s unstyled default. */
+.nav-menu li {
+	position: relative;
+}
+
+.nav-menu .sub-menu {
+	position: absolute;
+	top: 100%;
+	inset-inline-start: 0;
+	z-index: 10;
+	min-width: 200px;
+	margin: var(--wp--preset--spacing--12) 0 0;
+	padding: var(--wp--preset--spacing--8);
+	list-style: none;
+	background-color: var(--wp--custom--color--bg-elevated);
+	border: 1px solid var(--wp--custom--color--stroke-muted);
+	border-radius: var(--wp--custom--radius--md);
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(4px);
+	transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s;
+}
+
+.nav-menu .menu-item-has-children:hover > .sub-menu,
+.nav-menu .menu-item-has-children:focus-within > .sub-menu {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+.nav-menu .sub-menu a {
+	padding: var(--wp--preset--spacing--8) var(--wp--preset--spacing--12);
+	border-radius: var(--wp--custom--radius--xs);
+	white-space: nowrap;
+}
+
+.nav-menu .sub-menu a:hover,
+.nav-menu .sub-menu a:focus-visible {
+	background-color: var(--wp--custom--color--bg-secondary);
+}
+
+/* Actions --------------------------------------------------------------- */
+
+.site-header__actions {
+	display: flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--24);
+}
+
+.site-header__cart {
+	position: relative;
+	display: block;
+	width: 24px;
+	height: 24px;
+	color: var(--wp--custom--color--text-primary);
+	transition: color 0.18s ease;
+}
+
+.site-header__cart:hover,
+.site-header__cart:focus-visible {
+	color: var(--wp--custom--color--brand-primary);
+}
+
+.site-header__cart-count {
+	position: absolute;
+	top: -6px;
+	inset-inline-end: -8px;
+	min-width: 16px;
+	padding: 0 4px;
+	border-radius: var(--wp--custom--radius--pill);
+	background-color: var(--wp--custom--color--brand-primary);
+	color: var(--wp--custom--color--brand-ink);
+	font-family: var(--wp--preset--font-family--label);
+	font-size: 10px;
+	font-weight: 700;
+	line-height: 16px;
+	text-align: center;
+}
+
+.site-header__toggle {
+	display: block;
+	width: 24px;
+	height: 24px;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: var(--wp--custom--color--text-primary);
+	cursor: pointer;
+}
+
+.site-header__toggle-icon {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.site-header__toggle-icon[data-icon="close"] {
+	display: none;
+}
+
+.site-header__toggle[aria-expanded="true"] .site-header__toggle-icon[data-icon="open"] {
+	display: none;
+}
+
+.site-header__toggle[aria-expanded="true"] .site-header__toggle-icon[data-icon="close"] {
+	display: block;
+}
+
+/* -------------------------------------------------------------------------
+ * Mobile drawer
+ * ---------------------------------------------------------------------- */
+
+.mobile-drawer {
+	position: fixed;
+	inset: 0;
+	z-index: 99;
+}
+
+.mobile-drawer[hidden] {
+	display: none;
+}
+
+.mobile-drawer__backdrop {
+	position: absolute;
+	inset: 0;
+	background-color: var(--wp--custom--color--overlay);
+	opacity: 0;
+	transition: opacity 0.24s ease;
+}
+
+.mobile-drawer.is-open .mobile-drawer__backdrop {
+	opacity: 0.6;
+}
+
+.mobile-drawer__panel {
+	position: absolute;
+	inset-block: 0;
+	inset-inline-end: 0;
+	width: min(320px, 85vw);
+	padding: calc(80px + var(--wp--preset--spacing--24)) var(--wp--preset--spacing--24) var(--wp--preset--spacing--32);
+	background-color: var(--wp--custom--color--bg-secondary);
+	border-inline-start: 1px solid var(--wp--custom--color--stroke-muted);
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	transform: translateX(100%);
+	transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-drawer.is-open .mobile-drawer__panel {
+	transform: translateX(0);
+}
+
+.mobile-drawer__menu {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--24);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.mobile-drawer__menu a {
+	display: block;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--custom--font-size--heading-sm);
+	letter-spacing: var(--wp--custom--letter-spacing--wide);
+	line-height: 1.1;
+	color: var(--wp--custom--color--text-secondary);
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.mobile-drawer__menu a:hover,
+.mobile-drawer__menu a:focus-visible,
+.mobile-drawer__menu .current-menu-item > a {
+	color: var(--wp--custom--color--brand-primary);
+}
+
+/* "Prodavnica" has the product categories nested under it. In the drawer
+   there is no room for a hover flyout, so they just render as a smaller
+   indented list under their parent. */
+.mobile-drawer__menu .sub-menu {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--16);
+	margin: var(--wp--preset--spacing--16) 0 0;
+	padding: 0;
+	list-style: none;
+	border-inline-start: 1px solid var(--wp--custom--color--stroke-muted);
+}
+
+.mobile-drawer__menu .sub-menu a {
+	padding-inline-start: var(--wp--preset--spacing--16);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--custom--font-size--body-base);
+	letter-spacing: normal;
+	text-transform: none;
+	color: var(--wp--custom--color--text-tertiary);
+}
+
+body.drawer-open {
+	overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.mobile-drawer__panel,
+	.mobile-drawer__backdrop {
+		transition: none;
+	}
+}
+
+/* -------------------------------------------------------------------------
+ * Footer
+ * ---------------------------------------------------------------------- */
+
+.site-footer {
+	background-color: var(--wp--custom--color--bg-primary);
+	border-top: 1px solid var(--wp--custom--color--stroke-muted);
+}
+
+.site-footer__inner {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--48);
+	padding: var(--wp--preset--spacing--48) var(--wp--preset--spacing--24) var(--wp--preset--spacing--32);
+}
+
+.site-footer__content {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--48);
+}
+
+.site-footer__brand {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--24);
+}
+
+.site-footer__tagline {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--custom--font-size--body-2-xs);
+	letter-spacing: var(--wp--custom--letter-spacing--super-caps);
+	line-height: 1.4;
+	color: var(--wp--custom--color--text-muted);
+}
+
+.site-footer__grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--wp--preset--spacing--32);
+}
+
+.site-footer__col {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--20);
+}
+
+.site-footer__heading {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--label);
+	font-size: var(--wp--custom--font-size--label-sm);
+	font-weight: 700;
+	letter-spacing: var(--wp--custom--letter-spacing--wide);
+	line-height: 1;
+	color: var(--wp--custom--color--brand-primary);
+	text-transform: uppercase;
+}
+
+.site-footer__menu {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--12);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.site-footer__menu a {
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--custom--font-size--body-sm);
+	line-height: 1.3;
+	color: var(--wp--custom--color--text-muted);
+	text-decoration: none;
+	transition: color 0.18s ease;
+}
+
+.site-footer__menu a:hover,
+.site-footer__menu a:focus-visible {
+	color: var(--wp--custom--color--text-primary);
+}
+
+/* Social ---------------------------------------------------------------- */
+
+.site-footer__social {
+	display: flex;
+	gap: var(--wp--preset--spacing--12);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.site-footer__social-link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border: 1px solid var(--wp--custom--color--stroke-muted);
+	border-radius: var(--wp--custom--radius--pill);
+	color: var(--wp--custom--color--text-muted);
+	transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.site-footer__social-link .boxara-icon {
+	width: 16px;
+	height: 16px;
+}
+
+.site-footer__social-link:hover,
+.site-footer__social-link:focus-visible {
+	color: var(--wp--custom--color--brand-primary);
+	border-color: var(--wp--custom--color--brand-primary);
+}
+
+/* Legal bar ------------------------------------------------------------- */
+
+.site-footer__legal {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--16);
+	padding-top: var(--wp--preset--spacing--32);
+	border-top: 1px solid var(--wp--custom--color--stroke-muted);
+}
+
+.site-footer__copyright {
+	margin: 0;
+}
+
+.site-footer__copyright,
+.site-footer__legal-menu a {
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--custom--font-size--body-2-xs);
+	letter-spacing: var(--wp--custom--letter-spacing--tight);
+	line-height: 1.4;
+	color: var(--wp--custom--color--text-muted);
+	text-decoration: none;
+}
+
+.site-footer__legal-menu {
+	display: flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--24);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.site-footer__legal-menu a:hover,
+.site-footer__legal-menu a:focus-visible {
+	color: var(--wp--custom--color--text-primary);
+}
+
+/* -------------------------------------------------------------------------
+ * Desktop
+ * ---------------------------------------------------------------------- */
+
+@media (min-width: 900px) {
+
+	.site-header {
+		border-bottom: 1px solid var(--wp--custom--color--stroke-muted);
+	}
+
+	.site-header__inner {
+		padding: var(--wp--preset--spacing--24) var(--wp--custom--container--gutter-desktop);
+	}
+
+	.site-header__nav {
+		display: block;
+	}
+
+	.site-header__toggle {
+		display: none;
+	}
+
+	.mobile-drawer {
+		display: none;
+	}
+
+	.site-footer__inner {
+		gap: var(--wp--preset--spacing--64);
+		padding: var(--wp--preset--spacing--80) var(--wp--custom--container--gutter-desktop) var(--wp--preset--spacing--48);
+	}
+
+	.site-footer__content {
+		flex-direction: row;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: var(--wp--preset--spacing--64);
+	}
+
+	.site-footer__brand {
+		width: 320px;
+		flex: 0 0 auto;
+	}
+
+	.site-footer__grid {
+		display: flex;
+		gap: var(--wp--custom--container--gutter-desktop);
+	}
+
+	.site-footer__col {
+		width: 120px;
+	}
+
+	.site-footer__col--social {
+		width: 140px;
+	}
+
+	.site-footer__legal {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
