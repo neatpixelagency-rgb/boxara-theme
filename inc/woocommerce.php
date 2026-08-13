@@ -170,6 +170,28 @@ function boxara_woocommerce_add_to_cart_aria_describedby( $text, $product ) {
 add_filter( 'woocommerce_product_add_to_cart_aria_describedby', 'boxara_woocommerce_add_to_cart_aria_describedby', 10, 2 );
 
 /**
+ * Latin Serbian checkout "Place order" button text — same reasoning as the
+ * add-to-cart filters above: this is a decisive call-to-action, not
+ * background copy, so it's hardcoded rather than left to translation.
+ *
+ * @return string
+ */
+function boxara_woocommerce_order_button_text() {
+	return __( 'Potvrdi porudžbinu', 'boxara' );
+}
+add_filter( 'woocommerce_order_button_text', 'boxara_woocommerce_order_button_text' );
+
+/**
+ * Latin Serbian thank-you page confirmation text.
+ *
+ * @return string
+ */
+function boxara_woocommerce_order_received_text() {
+	return __( 'Hvala vam. Vaša porudžbina je uspešno primljena — javićemo vam se sa daljim detaljima.', 'boxara' );
+}
+add_filter( 'woocommerce_thankyou_order_received_text', 'boxara_woocommerce_order_received_text' );
+
+/**
  * Related Products Args.
  *
  * @param array $args related products args.
@@ -589,5 +611,53 @@ function boxara_transliterate_lower( $text ) {
 			'ž' => 'z',
 			'đ' => 'dj',
 		)
+	);
+}
+
+/**
+ * Thank-you page (checkout/thankyou.php).
+ *
+ * WooCommerce's default order-details table duplicates what
+ * thankyou.php already shows (order number, items, total) in unstyled
+ * markup — dropped in favour of the custom summary card. The billing
+ * address it also carries is real, useful info, so thankyou.php prints
+ * that itself instead.
+ */
+remove_action( 'woocommerce_thankyou', 'woocommerce_order_details_table', 10 );
+
+/**
+ * Latin Serbian order date, e.g. "13. avgust 2026." — the one piece of
+ * WooCommerce output the transliteration plugin doesn't reach, since
+ * WordPress core's date_i18n() pulls month names straight from the sr_RS
+ * (Cyrillic) core translation rather than through a filterable string.
+ *
+ * @param WC_DateTime $date Order date.
+ * @return string
+ */
+function boxara_format_order_date( $date ) {
+	if ( ! $date ) {
+		return '';
+	}
+
+	$months = array(
+		1  => 'januar',
+		2  => 'februar',
+		3  => 'mart',
+		4  => 'april',
+		5  => 'maj',
+		6  => 'jun',
+		7  => 'jul',
+		8  => 'avgust',
+		9  => 'septembar',
+		10 => 'oktobar',
+		11 => 'novembar',
+		12 => 'decembar',
+	);
+
+	return sprintf(
+		'%1$d. %2$s %3$d.',
+		(int) $date->date( 'j' ),
+		$months[ (int) $date->date( 'n' ) ],
+		(int) $date->date( 'Y' )
 	);
 }

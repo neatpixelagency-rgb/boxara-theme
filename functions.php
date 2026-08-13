@@ -64,6 +64,9 @@ function boxara_setup() {
 	// Load the editor stylesheet so patterns look right inside wp-admin too.
 	add_theme_support( 'editor-styles' );
 	add_editor_style( 'assets/css/home.css' );
+	add_editor_style( 'assets/css/about.css' );
+	add_editor_style( 'assets/css/cart.css' );
+	add_editor_style( 'assets/css/checkout.css' );
 
 	// WooCommerce. Declared here so Woo does not flag the theme as unsupported.
 	add_theme_support( 'woocommerce' );
@@ -251,6 +254,46 @@ function boxara_scripts() {
 			array( 'wc-add-to-cart-variation' ),
 			_S_VERSION,
 			true
+		);
+	}
+
+	// O nama (About) page.
+	if ( is_page( 'o-nama' ) ) {
+		wp_enqueue_style(
+			'boxara-about',
+			get_theme_file_uri( '/assets/css/about.css' ),
+			array( 'boxara-chrome' ),
+			_S_VERSION
+		);
+	}
+
+	// Cart page.
+	if ( function_exists( 'is_cart' ) && is_cart() ) {
+		// Cross-sells reuse the shop product-card grid, same as related
+		// products on the single product page.
+		wp_enqueue_style(
+			'boxara-shop',
+			get_theme_file_uri( '/assets/css/shop.css' ),
+			array( 'boxara-chrome' ),
+			_S_VERSION
+		);
+
+		wp_enqueue_style(
+			'boxara-cart',
+			get_theme_file_uri( '/assets/css/cart.css' ),
+			array( 'boxara-shop' ),
+			_S_VERSION
+		);
+	}
+
+	// Checkout page (also covers the thank-you / order-received screen —
+	// same page, WooCommerce swaps templates internally).
+	if ( function_exists( 'is_checkout' ) && is_checkout() ) {
+		wp_enqueue_style(
+			'boxara-checkout',
+			get_theme_file_uri( '/assets/css/checkout.css' ),
+			array( 'boxara-chrome' ),
+			_S_VERSION
 		);
 	}
 
