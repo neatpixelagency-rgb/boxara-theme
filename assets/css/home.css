@@ -50,6 +50,13 @@
 	object-position: 70% center;
 }
 
+/* Two background images swap at the desktop breakpoint below: the mobile
+   crop stays full-bleed with the CSS scrim; the desktop one is a separate,
+   pre-composited export with its own gradient already baked in. */
+.home-hero__bg--desktop {
+	display: none;
+}
+
 /* Scrim so the display type keeps its contrast over the photo.
    Painted onto the cover block's own background span rather than a custom
    ::after — core already stacks that span beneath the inner container, so
@@ -78,6 +85,12 @@
 }
 
 .home-hero__inner {
+	/* Core's .is-layout-constrained > * rule force-centers direct children
+	   with `margin-left/right: auto !important`, which was pushing the
+	   whole text column toward the middle of the hero instead of hugging
+	   the left edge. Must match its !important to win. */
+	margin-left: 0 !important;
+	margin-right: auto !important;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -194,19 +207,19 @@
 		min-height: 809px;
 	}
 
-	.home-hero .wp-block-cover__image-background {
-		object-position: right center;
+	/* Swap to the pre-composited desktop export — its gradient is already
+	   baked in at the exact 1440x809 hero size, so no CSS scrim is needed. */
+	.home-hero__bg--mobile {
+		display: none;
 	}
 
-	/* Desktop scrim runs left-to-right instead of top-to-bottom: copy sits in
-	   the left column, the artwork is revealed on the right. */
+	.home-hero__bg--desktop {
+		display: block;
+		object-position: center top;
+	}
+
 	.home-hero .home-hero__scrim {
-		background-image: linear-gradient(
-			to right,
-			var(--wp--custom--color--bg-primary) 0%,
-			var(--wp--custom--color--bg-primary) 36%,
-			rgba(10, 10, 10, 0) 100%
-		);
+		background-image: none;
 	}
 
 	.home-hero__inner {

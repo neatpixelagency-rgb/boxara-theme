@@ -67,6 +67,7 @@ function boxara_setup() {
 	add_editor_style( 'assets/css/about.css' );
 	add_editor_style( 'assets/css/cart.css' );
 	add_editor_style( 'assets/css/checkout.css' );
+	add_editor_style( 'assets/css/kontakt.css' );
 
 	// WooCommerce. Declared here so Woo does not flag the theme as unsupported.
 	add_theme_support( 'woocommerce' );
@@ -267,6 +268,16 @@ function boxara_scripts() {
 		);
 	}
 
+	// Kontakt (Contact) page.
+	if ( is_page( 'kontakt' ) ) {
+		wp_enqueue_style(
+			'boxara-kontakt',
+			get_theme_file_uri( '/assets/css/kontakt.css' ),
+			array( 'boxara-chrome' ),
+			_S_VERSION
+		);
+	}
+
 	// Cart page.
 	if ( function_exists( 'is_cart' ) && is_cart() ) {
 		// Cross-sells reuse the shop product-card grid, same as related
@@ -346,6 +357,11 @@ require get_template_directory() . '/inc/customizer.php';
  * Homepage newsletter signup.
  */
 require get_template_directory() . '/inc/newsletter.php';
+
+/**
+ * Kontakt page contact form.
+ */
+require get_template_directory() . '/inc/contact-form.php';
 
 /**
  * Load Jetpack compatibility file.

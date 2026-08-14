@@ -24,19 +24,35 @@ $boxara_shop_url = function_exists( 'wc_get_page_permalink' )
 $boxara_custom_url = home_url( '/po-meri/' );
 
 /*
- * Hero background photo, uploaded once to the Media Library (attachment 1299)
- * from the Figma source image. Referenced by ID like any other image the
- * client inserts through the editor — they can swap it from the block
- * toolbar without touching this file.
+ * Hero background photo, uploaded once to the Media Library (attachment 1323)
+ * from the Figma source image — an unframed, tightly-cropped re-export that
+ * replaced the earlier framed version (attachment 1299) so a right-anchored
+ * crop no longer reveals the picture frame's edge. Used on mobile, where the
+ * artwork sits full-bleed behind the copy with the CSS scrim gradient below.
+ * Referenced by ID like any other image the client inserts through the
+ * editor — they can swap it from the block toolbar without touching this
+ * file.
  */
-$boxara_hero_image_id     = 1299;
+$boxara_hero_image_id     = 1323;
 $boxara_hero_image_url    = wp_get_attachment_image_url( $boxara_hero_image_id, 'full' );
 $boxara_hero_image_srcset = wp_get_attachment_image_srcset( $boxara_hero_image_id, 'full' );
+
+/*
+ * Desktop background (attachment 1325) is a separate, pre-composited export:
+ * the designer already baked the left-to-right dark gradient into the image
+ * itself at the exact 1440x809 desktop hero size, rather than relying on our
+ * CSS scrim. Desktop-only — see .home-hero__bg--desktop / --mobile below.
+ */
+$boxara_hero_desktop_image_id  = 1325;
+$boxara_hero_desktop_image_url = wp_get_attachment_image_url( $boxara_hero_desktop_image_id, 'full' );
 ?>
 <!-- wp:cover {"url":"<?php echo esc_url( $boxara_hero_image_url ); ?>","id":<?php echo (int) $boxara_hero_image_id; ?>,"dimRatio":0,"isUserOverlayColor":true,"minHeight":809,"minHeightUnit":"px","align":"full","className":"home-hero","layout":{"type":"constrained"}} -->
 <div class="wp-block-cover alignfull home-hero" style="min-height:809px">
 	<?php if ( $boxara_hero_image_url ) : ?>
-	<img class="wp-block-cover__image-background wp-image-<?php echo (int) $boxara_hero_image_id; ?>" alt="" src="<?php echo esc_url( $boxara_hero_image_url ); ?>"<?php echo $boxara_hero_image_srcset ? ' srcset="' . esc_attr( $boxara_hero_image_srcset ) . '" sizes="100vw"' : ''; ?> data-object-fit="cover" />
+	<img class="wp-block-cover__image-background home-hero__bg home-hero__bg--mobile wp-image-<?php echo (int) $boxara_hero_image_id; ?>" alt="" src="<?php echo esc_url( $boxara_hero_image_url ); ?>"<?php echo $boxara_hero_image_srcset ? ' srcset="' . esc_attr( $boxara_hero_image_srcset ) . '" sizes="100vw"' : ''; ?> data-object-fit="cover" />
+	<?php endif; ?>
+	<?php if ( $boxara_hero_desktop_image_url ) : ?>
+	<img class="wp-block-cover__image-background home-hero__bg home-hero__bg--desktop wp-image-<?php echo (int) $boxara_hero_desktop_image_id; ?>" alt="" src="<?php echo esc_url( $boxara_hero_desktop_image_url ); ?>" data-object-fit="cover" />
 	<?php endif; ?>
 	<span aria-hidden="true" class="wp-block-cover__background home-hero__scrim"></span>
 	<div class="wp-block-cover__inner-container">

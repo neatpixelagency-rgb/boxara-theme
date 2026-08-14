@@ -95,7 +95,15 @@ function boxara_get_icon( $name, $args = array() ) {
  * @param array  $args Optional args, see boxara_get_icon().
  */
 function boxara_icon( $name, $args = array() ) {
-	echo wp_kses( boxara_get_icon( $name, $args ), boxara_svg_allowed_html() );
+	/*
+	 * wp_kses() lowercases every attribute name, but SVG's viewBox is
+	 * case-sensitive — browsers ignore a lowercased "viewbox" entirely,
+	 * which silently breaks the icon's coordinate system (it renders only
+	 * the top-left corner of the glyph). Restore the case after sanitizing.
+	 */
+	$svg = wp_kses( boxara_get_icon( $name, $args ), boxara_svg_allowed_html() );
+	$svg = preg_replace( '/\bviewbox=/i', 'viewBox=', $svg );
+	echo $svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- already sanitized via wp_kses() above.
 }
 
 /**
