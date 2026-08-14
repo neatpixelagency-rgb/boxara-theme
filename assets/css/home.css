@@ -340,8 +340,21 @@
 	margin: 0 calc(var(--wp--preset--spacing--24) * -1);
 	padding: 0 var(--wp--preset--spacing--24);
 	overflow-x: auto;
+	/* Setting only overflow-x forces the browser to also compute
+	   overflow-y as auto (the two axes can't be independently
+	   visible/scrollable per spec), which was showing a stray vertical
+	   scrollbar inside this horizontal strip. Pin it to hidden. */
+	overflow-y: hidden;
 	scroll-snap-type: x mandatory;
 	-webkit-overflow-scrolling: touch;
+	/* Touch devices already auto-hide this as an overlay scrollbar; this
+	   keeps it hidden on desktop/trackpad and in DevTools' mobile
+	   emulation too, where it renders as a visible classic scrollbar. */
+	scrollbar-width: none;
+}
+
+.home-collections__grid::-webkit-scrollbar {
+	display: none;
 }
 
 .home-collections__card {

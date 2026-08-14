@@ -19,7 +19,7 @@ $boxara_grain_id  = 1301;
 $boxara_grain_url = wp_get_attachment_image_url( $boxara_grain_id, 'full' );
 ?>
 <!-- wp:group {"className":"home-custom-made","layout":{"type":"constrained"}} -->
-<div class="wp-block-group home-custom-made">
+<div class="wp-block-group home-custom-made" id="kako-radimo">
 
 	<?php if ( $boxara_grain_url ) : ?>
 	<img class="home-custom-made__grain" src="<?php echo esc_url( $boxara_grain_url ); ?>" alt="" aria-hidden="true" loading="lazy" />

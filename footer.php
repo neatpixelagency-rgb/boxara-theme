@@ -14,6 +14,9 @@ $boxara_footer_columns = array(
 	'footer-company' => __( 'Kompanija', 'boxara' ),
 	'footer-help'    => __( 'Pomoć', 'boxara' ),
 );
+
+// Same map graphic as the Kontakt page — real Belgrade map, Knez Mihailova pin.
+$boxara_footer_map_url = wp_get_attachment_image_url( 1317, 'medium_large' );
 ?>
 
 	<footer id="colophon" class="site-footer">
@@ -71,6 +74,19 @@ $boxara_footer_columns = array(
 					<?php endif; ?>
 
 				</div>
+
+				<?php if ( $boxara_footer_map_url ) : ?>
+					<a
+						class="site-footer__map"
+						href="https://maps.google.com/?q=Knez+Mihailova+24,+Beograd"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="<?php esc_attr_e( 'Otvori lokaciju na mapi', 'boxara' ); ?>"
+					>
+						<img src="<?php echo esc_url( $boxara_footer_map_url ); ?>" alt="" loading="lazy" />
+					</a>
+				<?php endif; ?>
+
 			</div>
 
 			<div class="site-footer__legal">

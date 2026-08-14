@@ -106,8 +106,17 @@ body.tax-product_cat {
 	display: flex;
 	gap: var(--wp--preset--spacing--8);
 	overflow-x: auto;
+	/* Setting only overflow-x forces the browser to also compute
+	   overflow-y as auto, which can show a stray vertical scrollbar.
+	   Pin it to hidden -- see .home-collections__grid for the same fix. */
+	overflow-y: hidden;
 	-webkit-overflow-scrolling: touch;
 	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+}
+
+.shop-tabs::-webkit-scrollbar {
+	display: none;
 }
 
 .shop-tabs__tab {

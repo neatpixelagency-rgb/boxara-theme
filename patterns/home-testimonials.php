@@ -26,7 +26,7 @@ $boxara_reviews = array(
 );
 ?>
 <!-- wp:group {"className":"home-testimonials","layout":{"type":"constrained"}} -->
-<div class="wp-block-group home-testimonials">
+<div class="wp-block-group home-testimonials" id="recenzije">
 
 	<!-- wp:group {"className":"home-testimonials__heading","layout":{"type":"constrained"}} -->
 	<div class="wp-block-group home-testimonials__heading">
