@@ -29,7 +29,7 @@ $boxara_store_image_url = '';
 		<!-- /wp:paragraph -->
 
 		<!-- wp:heading {"level":2,"className":"home-store__title","fontFamily":"display"} -->
-		<h2 class="wp-block-heading home-store__title has-display-font-family">Boxara prodavnica</h2>
+		<h2 class="wp-block-heading home-store__title has-display-font-family js-reveal-words">Boxara prodavnica</h2>
 		<!-- /wp:heading -->
 
 	</div>
@@ -37,7 +37,7 @@ $boxara_store_image_url = '';
 
 	<div class="home-store__content">
 
-		<div class="home-store__image">
+		<div class="home-store__image js-reveal-section" style="--reveal-i:0">
 			<?php if ( $boxara_store_image_url ) : ?>
 				<img src="<?php echo esc_url( $boxara_store_image_url ); ?>" alt="Boxara izložbeni prostor" loading="lazy" />
 			<?php else : ?>
@@ -45,7 +45,7 @@ $boxara_store_image_url = '';
 			<?php endif; ?>
 		</div>
 
-		<div class="home-store__details">
+		<div class="home-store__details js-reveal-section" style="--reveal-i:1">
 
 			<div class="home-store__address">
 				<p class="home-store__address-line">

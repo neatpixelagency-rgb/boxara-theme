@@ -91,7 +91,7 @@ $boxara_shop_url = function_exists( 'wc_get_page_permalink' )
 	<div class="wp-block-group home-collections__header">
 
 		<!-- wp:heading {"level":2,"className":"home-collections__title","fontFamily":"display"} -->
-		<h2 class="wp-block-heading home-collections__title has-display-font-family">Kolekcije</h2>
+		<h2 class="wp-block-heading home-collections__title has-display-font-family js-reveal-words">Kolekcije</h2>
 		<!-- /wp:heading -->
 
 		<!-- wp:paragraph {"className":"home-collections__link"} -->
@@ -103,8 +103,8 @@ $boxara_shop_url = function_exists( 'wc_get_page_permalink' )
 
 	<?php if ( $boxara_collections_cards ) : ?>
 	<div class="home-collections__grid">
-		<?php foreach ( $boxara_collections_cards as $boxara_card ) : ?>
-		<a class="home-collections__card" href="<?php echo esc_url( $boxara_card['url'] ); ?>">
+		<?php foreach ( $boxara_collections_cards as $boxara_card_i => $boxara_card ) : ?>
+		<a class="home-collections__card js-reveal-section" style="--reveal-i:<?php echo (int) $boxara_card_i; ?>" href="<?php echo esc_url( $boxara_card['url'] ); ?>">
 			<span class="home-collections__image">
 				<?php if ( $boxara_card['image'] ) : ?>
 					<img src="<?php echo esc_url( $boxara_card['image'] ); ?>" alt="" loading="lazy" />

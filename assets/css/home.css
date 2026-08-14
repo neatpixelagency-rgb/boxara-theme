@@ -98,6 +98,23 @@
 	width: 100%;
 }
 
+/* Reveal timing ----------------------------------------------------------
+   Sequenced after the title's own line-by-line reveal (3 rows, staggered
+   130ms apart, ~0.75s animation each) so the lede/CTAs settle in once the
+   title has finished rather than overlapping it. */
+
+.home-hero__eyebrow.js-reveal-section {
+	transition-delay: 0ms;
+}
+
+.home-hero__lede.js-reveal-section {
+	transition-delay: 950ms;
+}
+
+.home-hero__ctas.js-reveal-section {
+	transition-delay: 1050ms;
+}
+
 /* Eyebrow --------------------------------------------------------------- */
 
 .home-hero__eyebrow {

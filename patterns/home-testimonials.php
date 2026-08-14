@@ -32,7 +32,7 @@ $boxara_reviews = array(
 	<div class="wp-block-group home-testimonials__heading">
 
 		<!-- wp:heading {"level":2,"className":"home-testimonials__title","fontFamily":"display"} -->
-		<h2 class="wp-block-heading home-testimonials__title has-display-font-family">Stvoreno da pripada.</h2>
+		<h2 class="wp-block-heading home-testimonials__title has-display-font-family js-reveal-words">Stvoreno da pripada.</h2>
 		<!-- /wp:heading -->
 
 		<!-- wp:paragraph {"className":"home-testimonials__subtitle"} -->
@@ -43,8 +43,8 @@ $boxara_reviews = array(
 	<!-- /wp:group -->
 
 	<div class="home-testimonials__grid">
-		<?php foreach ( $boxara_reviews as $boxara_review ) : ?>
-		<div class="home-testimonials__card">
+		<?php foreach ( $boxara_reviews as $boxara_review_i => $boxara_review ) : ?>
+		<div class="home-testimonials__card js-reveal-section" style="--reveal-i:<?php echo (int) $boxara_review_i; ?>">
 			<div class="home-testimonials__stars" aria-hidden="true">
 				<?php for ( $boxara_i = 0; $boxara_i < 5; $boxara_i++ ) : ?>
 					<?php boxara_icon( 'star' ); ?>

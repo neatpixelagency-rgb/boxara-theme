@@ -33,7 +33,7 @@ $boxara_grain_url = wp_get_attachment_image_url( $boxara_grain_id, 'full' );
 		<!-- /wp:paragraph -->
 
 		<!-- wp:heading {"level":2,"className":"home-custom-made__title","fontFamily":"display"} -->
-		<h2 class="wp-block-heading home-custom-made__title has-display-font-family">Umetnost po meri</h2>
+		<h2 class="wp-block-heading home-custom-made__title has-display-font-family js-reveal-words">Umetnost po meri</h2>
 		<!-- /wp:heading -->
 
 	</div>
@@ -42,16 +42,16 @@ $boxara_grain_url = wp_get_attachment_image_url( $boxara_grain_id, 'full' );
 	<div class="home-custom-made__grid">
 
 		<?php if ( $boxara_showcase_url ) : ?>
-		<div class="home-custom-made__showcase">
+		<div class="home-custom-made__showcase js-reveal-section" style="--reveal-i:0">
 			<img src="<?php echo esc_url( $boxara_showcase_url ); ?>" alt="Gotov ram naspram originalne referentne fotografije" loading="lazy" />
 		</div>
 		<?php endif; ?>
 
-		<div class="home-custom-made__process-col">
+		<div class="home-custom-made__process-col js-reveal-section" style="--reveal-i:1">
 
 			<ol class="home-custom-made__process">
 
-				<li class="home-custom-made__step">
+				<li class="home-custom-made__step js-reveal-section" style="--reveal-i:2">
 					<span class="home-custom-made__step-icon"><?php boxara_icon( 'step-choose' ); ?></span>
 					<span class="home-custom-made__step-copy">
 						<span class="home-custom-made__step-heading"><span class="home-custom-made__step-number">1</span>Izaberi svoju temu</span>
@@ -59,7 +59,7 @@ $boxara_grain_url = wp_get_attachment_image_url( $boxara_grain_id, 'full' );
 					</span>
 				</li>
 
-				<li class="home-custom-made__step">
+				<li class="home-custom-made__step js-reveal-section" style="--reveal-i:3">
 					<span class="home-custom-made__step-icon"><?php boxara_icon( 'step-create' ); ?></span>
 					<span class="home-custom-made__step-copy">
 						<span class="home-custom-made__step-heading"><span class="home-custom-made__step-number">2</span>Mi dizajniramo i pravimo</span>
@@ -67,7 +67,7 @@ $boxara_grain_url = wp_get_attachment_image_url( $boxara_grain_id, 'full' );
 					</span>
 				</li>
 
-				<li class="home-custom-made__step">
+				<li class="home-custom-made__step js-reveal-section" style="--reveal-i:4">
 					<span class="home-custom-made__step-icon"><?php boxara_icon( 'step-deliver' ); ?></span>
 					<span class="home-custom-made__step-copy">
 						<span class="home-custom-made__step-heading"><span class="home-custom-made__step-number">3</span>Dostavljamo do tebe</span>

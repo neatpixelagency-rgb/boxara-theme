@@ -1,0 +1,72 @@
+/**
+ * Scroll/entrance reveal system — see assets/js/reveal.js for the markup
+ * contract (.js-reveal-lines / .js-reveal-words / .js-reveal-section) and
+ * the progressive-enhancement rationale.
+ *
+ * @package Boxara
+ */
+
+.js-reveal-lines .reveal-row {
+	display: block;
+	overflow: hidden;
+}
+
+.js-reveal-lines .reveal-row__inner {
+	display: inline-block;
+	transform: translateY(115%);
+	opacity: 0;
+	transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease-out;
+	transition-delay: calc(var(--reveal-i, 0) * 130ms);
+}
+
+.js-reveal-lines.is-revealed .reveal-row__inner {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.js-reveal-words .reveal-word {
+	display: inline-block;
+	overflow: hidden;
+	vertical-align: top;
+}
+
+.js-reveal-words .reveal-word__inner {
+	display: inline-block;
+	transform: translateY(100%);
+	opacity: 0;
+	transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease-out;
+	transition-delay: calc(var(--reveal-i, 0) * 35ms);
+}
+
+.js-reveal-words.is-revealed .reveal-word__inner {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.js-reveal-section {
+	opacity: 0;
+	transform: translateY(28px);
+	transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+	transition-delay: calc(var(--reveal-i, 0) * 90ms);
+}
+
+.js-reveal-section.is-revealed {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/*
+ * Belt-and-suspenders: reveal.js already skips the animated path entirely
+ * under reduced motion (so .reveal-row/.reveal-word never get created),
+ * but .js-reveal-section's hidden state is authored directly here in CSS,
+ * so it needs its own override to guarantee content isn't stuck invisible.
+ */
+@media (prefers-reduced-motion: reduce) {
+	.js-reveal-lines .reveal-row__inner,
+	.js-reveal-words .reveal-word__inner,
+	.js-reveal-section {
+		transition: none !important;
+		transform: none !important;
+		opacity: 1 !important;
+	}
+}

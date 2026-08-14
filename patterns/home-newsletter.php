@@ -13,17 +13,17 @@
 <!-- wp:group {"className":"home-newsletter","layout":{"type":"constrained"}} -->
 <div class="wp-block-group home-newsletter">
 
-	<span class="home-newsletter__icon" aria-hidden="true"><?php boxara_icon( 'mail' ); ?></span>
+	<span class="home-newsletter__icon js-reveal-section" style="--reveal-i:0" aria-hidden="true"><?php boxara_icon( 'mail' ); ?></span>
 
 	<!-- wp:heading {"level":2,"className":"home-newsletter__title","fontFamily":"display"} -->
-	<h2 class="wp-block-heading home-newsletter__title has-display-font-family">Pridruži se Boxara ekipi</h2>
+	<h2 class="wp-block-heading home-newsletter__title has-display-font-family js-reveal-words">Pridruži se Boxara ekipi</h2>
 	<!-- /wp:heading -->
 
 	<!-- wp:paragraph {"className":"home-newsletter__lede"} -->
-	<p class="home-newsletter__lede">Dobij rani pristup novim dizajnima, ekskluzivnim kolekcijama i sadržaju iz naše radionice za izradu papirne umetnosti.</p>
+	<p class="home-newsletter__lede js-reveal-section" style="--reveal-i:1">Dobij rani pristup novim dizajnima, ekskluzivnim kolekcijama i sadržaju iz naše radionice za izradu papirne umetnosti.</p>
 	<!-- /wp:paragraph -->
 
-	<form class="home-newsletter__form" novalidate>
+	<form class="home-newsletter__form js-reveal-section" style="--reveal-i:2" novalidate>
 		<div class="home-newsletter__row">
 			<label class="screen-reader-text" for="home-newsletter-email">Tvoja email adresa</label>
 			<input class="home-newsletter__input" type="email" id="home-newsletter-email" name="email" placeholder="Tvoja email adresa" autocomplete="email" required />

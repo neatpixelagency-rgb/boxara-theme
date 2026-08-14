@@ -61,19 +61,19 @@ $boxara_hero_desktop_image_url = wp_get_attachment_image_url( $boxara_hero_deskt
 		<div class="wp-block-group home-hero__inner">
 
 			<!-- wp:paragraph {"className":"home-hero__eyebrow","fontFamily":"accent"} -->
-			<p class="home-hero__eyebrow has-accent-font-family">mesto za</p>
+			<p class="home-hero__eyebrow has-accent-font-family js-reveal-section">mesto za</p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:heading {"level":1,"className":"home-hero__title","fontFamily":"display"} -->
-			<h1 class="wp-block-heading home-hero__title has-display-font-family">Male stvari<br><mark style="background-color:rgba(0,0,0,0)" class="has-inline-color has-brand-color">sa velikom</mark><br>pričom</h1>
+			<h1 class="wp-block-heading home-hero__title has-display-font-family js-reveal-lines">Male stvari<br><mark style="background-color:rgba(0,0,0,0)" class="has-inline-color has-brand-color">sa velikom</mark><br>pričom</h1>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"className":"home-hero__lede"} -->
-			<p class="home-hero__lede">Ručno izrađena slojevita umetnička dela koja donose dubinu, teksturu i karakter vašem životnom prostoru.</p>
+			<p class="home-hero__lede js-reveal-section">Ručno izrađena slojevita umetnička dela koja donose dubinu, teksturu i karakter vašem životnom prostoru.</p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:buttons {"className":"home-hero__ctas"} -->
-			<div class="wp-block-buttons home-hero__ctas">
+			<div class="wp-block-buttons home-hero__ctas js-reveal-section">
 
 				<!-- wp:button {"className":"is-style-fill"} -->
 				<div class="wp-block-button is-style-fill"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( $boxara_shop_url ); ?>">Pronađi ram</a></div>

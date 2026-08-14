@@ -37,7 +37,7 @@ $boxara_shop_url = function_exists( 'wc_get_page_permalink' )
 	<div class="wp-block-group home-products__header">
 
 		<!-- wp:heading {"level":2,"className":"home-products__title","fontFamily":"display"} -->
-		<h2 class="wp-block-heading home-products__title has-display-font-family">Najpopularniji</h2>
+		<h2 class="wp-block-heading home-products__title has-display-font-family js-reveal-words">Najpopularniji</h2>
 		<!-- /wp:heading -->
 
 		<!-- wp:paragraph {"className":"home-products__link"} -->
@@ -50,7 +50,7 @@ $boxara_shop_url = function_exists( 'wc_get_page_permalink' )
 	<?php if ( $boxara_products ) : ?>
 	<div class="home-products__grid">
 		<?php
-		foreach ( $boxara_products as $boxara_product ) :
+		foreach ( $boxara_products as $boxara_product_i => $boxara_product ) :
 			global $product;
 			$product = $boxara_product; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- required by woocommerce_template_loop_add_to_cart(), which reads the global.
 
@@ -58,7 +58,7 @@ $boxara_shop_url = function_exists( 'wc_get_page_permalink' )
 			$boxara_category = ( $boxara_terms && ! is_wp_error( $boxara_terms ) ) ? $boxara_terms[0]->name : '';
 			$boxara_image    = get_the_post_thumbnail_url( $boxara_product->get_id(), 'medium_large' );
 			?>
-			<div class="home-products__card">
+			<div class="home-products__card js-reveal-section" style="--reveal-i:<?php echo (int) ( $boxara_product_i % 4 ); ?>">
 				<a class="home-products__image" href="<?php echo esc_url( get_permalink( $boxara_product->get_id() ) ); ?>">
 					<?php if ( $boxara_image ) : ?>
 						<img src="<?php echo esc_url( $boxara_image ); ?>" alt="<?php echo esc_attr( $boxara_product->get_name() ); ?>" loading="lazy" />

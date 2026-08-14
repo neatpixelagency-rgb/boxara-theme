@@ -192,6 +192,23 @@ function boxara_scripts() {
 		_S_VERSION
 	);
 
+	// Scroll/entrance reveal system — generic, so it loads sitewide even
+	// though only the homepage patterns use it today. See assets/js/reveal.js.
+	wp_enqueue_style(
+		'boxara-animations',
+		get_theme_file_uri( '/assets/css/animations.css' ),
+		array( 'boxara-chrome' ),
+		_S_VERSION
+	);
+
+	wp_enqueue_script(
+		'boxara-reveal',
+		get_theme_file_uri( '/assets/js/reveal.js' ),
+		array(),
+		_S_VERSION,
+		true
+	);
+
 	// Homepage section styles. Also loaded as an editor stylesheet in boxara_setup().
 	wp_enqueue_style(
 		'boxara-home',
