@@ -54,9 +54,13 @@
 	object-position: 70% center;
 }
 
-/* Two background images swap at the desktop breakpoint below: the mobile
-   crop stays full-bleed with the CSS scrim; the desktop one is a separate,
-   pre-composited export with its own gradient already baked in. */
+/* Mobile gets a plain black background instead of the artwork photo --
+   just the .home-hero background-color showing through. The desktop
+   image swaps in at the breakpoint below. */
+.home-hero__bg--mobile {
+	display: none;
+}
+
 .home-hero__bg--desktop {
 	display: none;
 }
@@ -226,11 +230,8 @@
 
 
 	/* Swap to the pre-composited desktop export — its gradient is already
-	   baked in at the exact 1440x809 hero size, so no CSS scrim is needed. */
-	.home-hero__bg--mobile {
-		display: none;
-	}
-
+	   baked in at the exact 1440x809 hero size, so no CSS scrim is needed.
+	   (.home-hero__bg--mobile stays hidden here too, already off globally.) */
 	.home-hero__bg--desktop {
 		display: block;
 		object-position: center top;
