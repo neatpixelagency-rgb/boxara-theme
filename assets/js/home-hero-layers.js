@@ -25,10 +25,12 @@
 		return;
 	}
 
-	// Extra lag per band in px, decaying to 0 as the reveal completes --
-	// keeps the topmost (teal) band a touch livelier than the bottom
-	// (dark) band, which anchors the group and moves with the master pace.
-	var lag = [ 60, 30, 15, 0 ];
+	// Extra lag per band in px, decaying to 0 as the reveal completes.
+	// The topmost (teal) band has none -- it moves at the master pace the
+	// whole time -- and each band below it starts further back, so they
+	// have more ground to close as they catch up: bottom bands read as
+	// visibly quicker, the top band as the slow, steady anchor.
+	var lag = [ 0, 30, 65, 110 ];
 
 	var ticking = false;
 
@@ -37,11 +39,8 @@
 
 		var pinTop = wrap.offsetTop;
 
-		// The settle point is reached partway through the pin, not at the
-		// end of it -- the wrap is taller than that so the layers' tail has
-		// room to clear before Collections appears (see home.css). Read the
-		// same --home-hero-settle-vh value CSS uses rather than duplicating
-		// the number here.
+		// Read the same --home-hero-settle-vh value CSS uses for the pin
+		// room, rather than duplicating the number here.
 		var settleVh   = parseFloat( getComputedStyle( wrap ).getPropertyValue( '--home-hero-settle-vh' ) ) || 60;
 		var scrollRoom = ( settleVh / 100 ) * window.innerHeight;
 

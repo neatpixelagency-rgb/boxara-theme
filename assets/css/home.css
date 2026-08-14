@@ -151,6 +151,16 @@
 	display: block;
 	width: 100%;
 	height: 100%;
+	/* Matches the Figma export's own two-pass shadow (offset/blur/alpha
+	   taken straight from its filter def), rebuilt in CSS instead of left
+	   baked into the SVG -- drop-shadow() traces the actual rendered
+	   silhouette at whatever size the band is stretched to, so it stays
+	   correct instead of the fixed pixel values in the original SVG filter
+	   going stale under the vh-based scaling above. Negative Y casts each
+	   band's shadow upward onto the one behind it, same as the source. */
+	filter:
+		drop-shadow(0 -6px 6px rgba(0, 0, 0, 0.15))
+		drop-shadow(0 -15px 12px rgba(0, 0, 0, 0.25));
 }
 
 .home-hero-layers__band--1 {
