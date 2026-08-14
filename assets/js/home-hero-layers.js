@@ -3,11 +3,13 @@
  *
  * The pin/settle mechanic itself is pure CSS (a sticky hero plus an
  * absolutely-positioned layers block that rises 1:1 with scroll inside a
- * taller wrapper — see .home-hero-pin in home.css). This script only adds
- * a small extra per-band offset on top of that free motion, decaying to
- * zero exactly as the layers settle into their designed position, so the
- * four bands arrive with a slight stagger instead of moving as one rigid
- * block.
+ * taller wrapper — see .home-hero-pin in home.css). This script pulls each
+ * band up toward band 1's position by most of its own baseline gap, so at
+ * the top of the page the four bands sit almost, but not quite, on top of
+ * each other -- then eases that pull off to exactly 0 as the reveal
+ * completes, letting them peel apart into their designed staggered
+ * positions (18vh/36vh/54vh apart, matching home.css) by the time they
+ * settle.
  *
  * @package Boxara
  */
@@ -25,14 +27,17 @@
 		return;
 	}
 
-	// Extra lag per band, as a fraction of viewport height, decaying to 0
-	// as the reveal completes. In vh rather than a fixed px so the effect
-	// reads the same relative strength at any viewport size. The topmost
-	// (teal) band has none -- it moves at the master pace the whole time
-	// -- and each band below it starts further back, so they have more
-	// ground to close as they catch up: bottom bands read as visibly
-	// quicker, the top band as the slow, steady anchor.
-	var lagVh = [ 0, 25, 50, 85 ];
+	// Each band's own top offset in home.css (band--1/2/3/4), in vh --
+	// the gap being closed at the top of the page is measured against
+	// these, so it has to match the CSS or the settle position drifts.
+	var baselineVh = [ 0, 18, 36, 54 ];
+
+	// How much of that baseline gap to close at the very top of the page --
+	// 0.97 means the bands sit almost, but not quite, on top of each other
+	// before any scrolling happens (leaving them just barely distinguishable
+	// rather than a single flat color), then peel apart into their full
+	// staggered spacing as the user scrolls.
+	var pullFactor = 0.97;
 
 	var ticking = false;
 
@@ -53,18 +58,19 @@
 		var progress = ( window.scrollY - pinTop ) / scrollRoom;
 		progress = Math.max( 0, Math.min( 1, progress ) );
 
-		// A band's lag has usually burned off a lot of its decay before it
-		// even scrolls into view (it starts well below the viewport), so a
-		// linear decay wastes most of the effect off-screen. Math.pow with
+		// A band's pull-in has usually eased off a lot before it even
+		// scrolls into view (it starts well below the viewport), so a
+		// linear ease wastes most of the effect off-screen. Math.pow with
 		// an exponent under 1 keeps more of it in reserve through the
-		// early/middle of the scroll, so there's still a clearly visible
-		// speed difference while the bands are actually on screen, not just
-		// a snap into place right at the end.
+		// early/middle of the scroll, so the bands are still visibly
+		// peeling apart while on screen, not just snapping into their
+		// final spacing right at the end.
 		var remaining = Math.pow( 1 - progress, 0.6 );
 
 		bands.forEach( function ( band, i ) {
-			var lagPx  = ( ( lagVh[ i ] || 0 ) / 100 ) * window.innerHeight;
-			var offset = remaining * lagPx;
+			var pullVh = ( baselineVh[ i ] || 0 ) * pullFactor;
+			var pullPx = ( pullVh / 100 ) * window.innerHeight;
+			var offset = -remaining * pullPx;
 			band.style.transform = offset ? 'translateY(' + offset.toFixed( 1 ) + 'px)' : '';
 		} );
 	}
