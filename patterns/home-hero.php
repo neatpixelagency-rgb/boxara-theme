@@ -45,9 +45,27 @@ $boxara_hero_image_srcset = wp_get_attachment_image_srcset( $boxara_hero_image_i
  */
 $boxara_hero_desktop_image_id  = 1325;
 $boxara_hero_desktop_image_url = wp_get_attachment_image_url( $boxara_hero_desktop_image_id, 'full' );
+
+/*
+ * The four "paper wave" bands that rise up and settle covering the bottom
+ * of the hero as the page scrolls (see .home-hero-pin in home.css and
+ * assets/js/home-hero-layers.js). Exported from Figma (node 252:2549) as
+ * plain gradient-fill shapes — no drop shadow, so they scale/stack cleanly.
+ * Static theme assets rather than media-library uploads since they are
+ * fixed design-system graphics, not client-editable content.
+ */
+$boxara_hero_layers = array(
+	'wave-layer-1-teal.svg',
+	'wave-layer-2-orange.svg',
+	'wave-layer-3-crimson.svg',
+	'wave-layer-4-dark.svg',
+);
 ?>
-<!-- wp:cover {"url":"<?php echo esc_url( $boxara_hero_image_url ); ?>","id":<?php echo (int) $boxara_hero_image_id; ?>,"dimRatio":0,"isUserOverlayColor":true,"minHeight":809,"minHeightUnit":"px","align":"full","className":"home-hero","layout":{"type":"constrained"}} -->
-<div class="wp-block-cover alignfull home-hero" style="min-height:809px">
+<!-- wp:group {"className":"home-hero-pin","align":"full","layout":{"type":"default"}} -->
+<div class="wp-block-group alignfull home-hero-pin">
+
+<!-- wp:cover {"url":"<?php echo esc_url( $boxara_hero_image_url ); ?>","id":<?php echo (int) $boxara_hero_image_id; ?>,"dimRatio":0,"isUserOverlayColor":true,"className":"home-hero","layout":{"type":"constrained"}} -->
+<div class="wp-block-cover home-hero">
 	<?php if ( $boxara_hero_image_url ) : ?>
 	<img class="wp-block-cover__image-background home-hero__bg home-hero__bg--mobile wp-image-<?php echo (int) $boxara_hero_image_id; ?>" alt="" src="<?php echo esc_url( $boxara_hero_image_url ); ?>"<?php echo $boxara_hero_image_srcset ? ' srcset="' . esc_attr( $boxara_hero_image_srcset ) . '" sizes="100vw"' : ''; ?> data-object-fit="cover" />
 	<?php endif; ?>
@@ -92,3 +110,14 @@ $boxara_hero_desktop_image_url = wp_get_attachment_image_url( $boxara_hero_deskt
 	</div>
 </div>
 <!-- /wp:cover -->
+
+	<div class="home-hero-layers" aria-hidden="true">
+		<?php foreach ( $boxara_hero_layers as $boxara_layer_i => $boxara_layer_file ) : ?>
+			<div class="home-hero-layers__band home-hero-layers__band--<?php echo (int) ( $boxara_layer_i + 1 ); ?>">
+				<img src="<?php echo esc_url( get_theme_file_uri( '/assets/icons/' . $boxara_layer_file ) ); ?>" alt="" />
+			</div>
+		<?php endforeach; ?>
+	</div>
+
+</div>
+<!-- /wp:group -->
