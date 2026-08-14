@@ -25,12 +25,16 @@
 		return;
 	}
 
-	// Extra lag per band in px, decaying to 0 as the reveal completes.
-	// The topmost (teal) band has none -- it moves at the master pace the
-	// whole time -- and each band below it starts further back, so they
-	// have more ground to close as they catch up: bottom bands read as
-	// visibly quicker, the top band as the slow, steady anchor.
-	var lag = [ 0, 30, 65, 110 ];
+	// Extra lag per band, as a fraction of viewport height, decaying to 0
+	// as the reveal completes. In vh rather than a fixed px so the effect
+	// reads the same relative strength at any viewport size. The topmost
+	// (teal) band has none -- it moves at the master pace the whole time
+	// -- and each band below it starts further back, so they have more
+	// ground to close as they catch up: bottom bands read as visibly
+	// quicker, the top band as the slow, steady anchor. Large deltas
+	// (up to 35% of viewport height) so the speed difference actually
+	// reads while scrolling, not just as a faint wobble.
+	var lagVh = [ 0, 12, 23, 35 ];
 
 	var ticking = false;
 
@@ -52,7 +56,8 @@
 		progress = Math.max( 0, Math.min( 1, progress ) );
 
 		bands.forEach( function ( band, i ) {
-			var offset = ( 1 - progress ) * ( lag[ i ] || 0 );
+			var lagPx  = ( ( lagVh[ i ] || 0 ) / 100 ) * window.innerHeight;
+			var offset = ( 1 - progress ) * lagPx;
 			band.style.transform = offset ? 'translateY(' + offset.toFixed( 1 ) + 'px)' : '';
 		} );
 	}
