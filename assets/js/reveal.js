@@ -89,25 +89,12 @@
 		el.classList.add( 'is-revealed' );
 	}
 
-	function init() {
-		var lineEls    = document.querySelectorAll( '.js-reveal-lines' );
-		var wordEls    = document.querySelectorAll( '.js-reveal-words' );
-		var sectionEls = document.querySelectorAll( '.js-reveal-section' );
+	var reduceMotion = window.matchMedia && window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
+	var hasObserver  = 'IntersectionObserver' in window;
+	var io           = null;
 
-		var reduceMotion = window.matchMedia && window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
-		var hasObserver  = 'IntersectionObserver' in window;
-
-		if ( reduceMotion || ! hasObserver ) {
-			lineEls.forEach( reveal );
-			wordEls.forEach( reveal );
-			sectionEls.forEach( reveal );
-			return;
-		}
-
-		lineEls.forEach( wrapLines );
-		wordEls.forEach( wrapWords );
-
-		var io = new IntersectionObserver(
+	if ( ! reduceMotion && hasObserver ) {
+		io = new IntersectionObserver(
 			function ( entries, observer ) {
 				entries.forEach( function ( entry ) {
 					if ( entry.isIntersecting ) {
@@ -118,10 +105,65 @@
 			},
 			{ threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
 		);
+	}
 
-		lineEls.forEach( function ( el ) { io.observe( el ); } );
-		wordEls.forEach( function ( el ) { io.observe( el ); } );
-		sectionEls.forEach( function ( el ) { io.observe( el ); } );
+	/**
+	 * Wrap/observe a fresh batch of elements — the initial page scan calls
+	 * this with the whole document, and anything that injects markup later
+	 * (e.g. the shop's AJAX "load more") can call window.boxaraReveal.observe()
+	 * with just the new nodes so they animate in too.
+	 */
+	function observe( root ) {
+		var scope   = root || document;
+		var lineEls = scope.matches && scope.matches( '.js-reveal-lines' ) ? [ scope ] : scope.querySelectorAll( '.js-reveal-lines' );
+		var wordEls = scope.matches && scope.matches( '.js-reveal-words' ) ? [ scope ] : scope.querySelectorAll( '.js-reveal-words' );
+		var sectionEls = scope.matches && scope.matches( '.js-reveal-section' ) ? [ scope ] : scope.querySelectorAll( '.js-reveal-section' );
+
+		if ( ! io ) {
+			Array.prototype.forEach.call( lineEls, reveal );
+			Array.prototype.forEach.call( wordEls, reveal );
+			Array.prototype.forEach.call( sectionEls, reveal );
+			return;
+		}
+
+		Array.prototype.forEach.call( lineEls, function ( el ) {
+			wrapLines( el );
+			io.observe( el );
+		} );
+		Array.prototype.forEach.call( wordEls, function ( el ) {
+			wrapWords( el );
+			io.observe( el );
+		} );
+		Array.prototype.forEach.call( sectionEls, function ( el ) {
+			io.observe( el );
+		} );
+	}
+
+	/**
+	 * Observe a plain list/array of elements directly (each already known
+	 * to be one of the three reveal types), skipping the querySelectorAll
+	 * scan — used for AJAX-appended nodes where the caller already has
+	 * exact references.
+	 */
+	function observeElements( els ) {
+		Array.prototype.forEach.call( els, function ( el ) {
+			if ( el.classList.contains( 'js-reveal-lines' ) ) {
+				if ( io ) { wrapLines( el ); }
+			} else if ( el.classList.contains( 'js-reveal-words' ) ) {
+				if ( io ) { wrapWords( el ); }
+			}
+			if ( io ) {
+				io.observe( el );
+			} else {
+				reveal( el );
+			}
+		} );
+	}
+
+	window.boxaraReveal = { observe: observeElements };
+
+	function init() {
+		observe( document );
 	}
 
 	if ( document.readyState === 'loading' ) {

@@ -60,8 +60,13 @@
 
 				var temp = document.createElement( 'div' );
 				temp.innerHTML = data.data.html;
+				var newItems = Array.prototype.slice.call( temp.children );
 				while ( temp.firstChild ) {
 					grid.appendChild( temp.firstChild );
+				}
+
+				if ( window.boxaraReveal ) {
+					window.boxaraReveal.observe( newItems );
 				}
 
 				if ( data.data.has_more ) {

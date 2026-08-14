@@ -62,6 +62,16 @@
 	width: 100%;
 }
 
+/* Reveal timing — lede settles in once the (single-row) title mask has
+   finished rising (~750ms). */
+.about-hero__eyebrow.js-reveal-section {
+	transition-delay: 0ms;
+}
+
+.about-hero__lede.js-reveal-section {
+	transition-delay: 650ms;
+}
+
 .about-hero__eyebrow {
 	margin: 0;
 	font-size: var(--wp--custom--font-size--display-sm);

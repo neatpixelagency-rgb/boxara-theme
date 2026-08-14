@@ -16,7 +16,7 @@ $boxara_social = boxara_social_links();
 <div class="wp-block-group kontakt-main">
 	<div class="kontakt-main__row">
 
-		<div class="kontakt-form">
+		<div class="kontakt-form js-reveal-section" style="--reveal-i:0">
 			<form class="kontakt-form__form" novalidate>
 
 				<div class="kontakt-form__group">
@@ -51,10 +51,10 @@ $boxara_social = boxara_social_links();
 			</form>
 		</div>
 
-		<div class="kontakt-info">
+		<div class="kontakt-info js-reveal-section" style="--reveal-i:1">
 
 			<div class="kontakt-info__header">
-				<h2 class="kontakt-info__title">INFORMACIJE</h2>
+				<h2 class="kontakt-info__title js-reveal-words">INFORMACIJE</h2>
 				<span class="kontakt-info__divider" aria-hidden="true"></span>
 			</div>
 

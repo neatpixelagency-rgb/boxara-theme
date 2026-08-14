@@ -32,6 +32,16 @@
 	background-color: var(--wp--custom--color--bg-primary);
 }
 
+/* Reveal timing — lede settles in once the (single-row) title mask has
+   finished rising (~750ms). */
+.kontakt-hero__eyebrow.js-reveal-section {
+	transition-delay: 0ms;
+}
+
+.kontakt-hero__lede.js-reveal-section {
+	transition-delay: 650ms;
+}
+
 .kontakt-hero__eyebrow {
 	display: flex;
 	align-items: center;

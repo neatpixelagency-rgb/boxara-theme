@@ -26,8 +26,8 @@ $boxara_store_image_url = '';
 <div class="wp-block-group kontakt-location">
 	<div class="kontakt-location__row">
 
-		<div class="kontakt-location__col">
-			<h2 class="kontakt-location__title">LOKACIJA</h2>
+		<div class="kontakt-location__col js-reveal-section" style="--reveal-i:0">
+			<h2 class="kontakt-location__title js-reveal-words">LOKACIJA</h2>
 			<div class="kontakt-location__map-card">
 				<?php if ( $boxara_map_image_url ) : ?>
 					<img class="kontakt-location__map-image" src="<?php echo esc_url( $boxara_map_image_url ); ?>" alt="Mapa centra Beograda sa oznakom lokacije Boxara prodavnice na Knez Mihailovoj" loading="lazy" />
@@ -46,8 +46,8 @@ $boxara_store_image_url = '';
 			</div>
 		</div>
 
-		<div class="kontakt-location__col">
-			<h2 class="kontakt-location__title">NAŠA PRODAVNICA</h2>
+		<div class="kontakt-location__col js-reveal-section" style="--reveal-i:1">
+			<h2 class="kontakt-location__title js-reveal-words">NAŠA PRODAVNICA</h2>
 			<div class="kontakt-location__store-card">
 				<?php if ( $boxara_store_image_url ) : ?>
 					<img src="<?php echo esc_url( $boxara_store_image_url ); ?>" alt="Boxara izložbeni prostor" loading="lazy" />

@@ -21,7 +21,7 @@
 		<!-- /wp:paragraph -->
 
 		<!-- wp:heading {"level":2,"className":"about-values__title","fontFamily":"display"} -->
-		<h2 class="wp-block-heading about-values__title has-display-font-family">ŠTA ČINI <mark style="background-color:rgba(0,0,0,0)" class="has-inline-color has-brand-color">BOXARU</mark> POSEBNOM</h2>
+		<h2 class="wp-block-heading about-values__title has-display-font-family js-reveal-words">ŠTA ČINI <mark style="background-color:rgba(0,0,0,0)" class="has-inline-color has-brand-color">BOXARU</mark> POSEBNOM</h2>
 		<!-- /wp:heading -->
 
 	</div>
@@ -29,30 +29,30 @@
 
 	<div class="about-values__row">
 
-		<div class="about-values__card">
+		<div class="about-values__card js-reveal-section" style="--reveal-i:0">
 			<div class="about-values__card-top">
 				<span class="about-values__number">01</span>
 				<span class="about-values__icon"><?php boxara_icon( 'value-design' ); ?></span>
 			</div>
-			<h3 class="about-values__card-title">Unikatni Dizajn</h3>
+			<h3 class="about-values__card-title js-reveal-words">Unikatni Dizajn</h3>
 			<p class="about-values__card-desc">Naša dela nećete naći nigde drugde. Svaki koncept je potpuno autorski, osmišljen i razvijen u našem beogradskom studiju.</p>
 		</div>
 
-		<div class="about-values__card">
+		<div class="about-values__card js-reveal-section" style="--reveal-i:1">
 			<div class="about-values__card-top">
 				<span class="about-values__number">02</span>
 				<span class="about-values__icon"><?php boxara_icon( 'value-materials' ); ?></span>
 			</div>
-			<h3 class="about-values__card-title">Premium Materijali</h3>
+			<h3 class="about-values__card-title js-reveal-words">Premium Materijali</h3>
 			<p class="about-values__card-desc">Koristimo isključivo arhivske italijanske papire i masivne drvene ramove sa antirefleksnim staklom vrhunskog kvaliteta.</p>
 		</div>
 
-		<div class="about-values__card">
+		<div class="about-values__card js-reveal-section" style="--reveal-i:2">
 			<div class="about-values__card-top">
 				<span class="about-values__number">03</span>
 				<span class="about-values__icon"><?php boxara_icon( 'value-craft' ); ?></span>
 			</div>
-			<h3 class="about-values__card-title">Precizna izrada</h3>
+			<h3 class="about-values__card-title js-reveal-words">Precizna izrada</h3>
 			<p class="about-values__card-desc">Svaki sloj je ručno sklopljen sa preciznošću koja čini svaki komad jedinstvenim — bez masovne proizvodnje, samo pažljivo izrađeno umetničko delo.</p>
 		</div>
 

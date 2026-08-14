@@ -22,7 +22,7 @@ $boxara_terms    = get_the_terms( $product->get_id(), 'product_cat' );
 $boxara_category = ( $boxara_terms && ! is_wp_error( $boxara_terms ) ) ? $boxara_terms[0]->name : '';
 $boxara_image    = get_the_post_thumbnail_url( $product->get_id(), 'medium_large' );
 ?>
-<li <?php wc_product_class( 'shop-product', $product ); ?>>
+<li <?php wc_product_class( 'shop-product js-reveal-section', $product ); ?>>
 
 	<a class="shop-product__image" href="<?php echo esc_url( get_permalink() ); ?>">
 		<?php if ( $boxara_image ) : ?>

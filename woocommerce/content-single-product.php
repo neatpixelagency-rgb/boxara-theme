@@ -64,7 +64,7 @@ $boxara_sales  = (int) $product->get_total_sales();
 					</p>
 				<?php endif; ?>
 
-				<h1 class="shop-product-page__title"><?php the_title(); ?></h1>
+				<h1 class="shop-product-page__title js-reveal-lines"><?php the_title(); ?></h1>
 
 				<?php if ( $boxara_artist ) : ?>
 					<p class="shop-product-page__signature">Autor: <span><?php echo esc_html( $boxara_artist ); ?></span></p>
@@ -115,7 +115,7 @@ $boxara_sales  = (int) $product->get_total_sales();
 		?>
 		<div class="shop-product-page__specs">
 			<div class="shop-product-page__specs-inner">
-				<h2 class="shop-product-page__specs-title">Detalji i specifikacije</h2>
+				<h2 class="shop-product-page__specs-title js-reveal-words">Detalji i specifikacije</h2>
 				<div class="shop-product-page__specs-grid">
 					<?php foreach ( $boxara_specs as $boxara_spec ) : ?>
 						<div class="shop-product-page__spec-row">

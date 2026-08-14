@@ -210,6 +210,36 @@ ul.products {
 	list-style: none;
 }
 
+/* Reveal stagger, keyed off grid position rather than a PHP-computed index
+   so it keeps working for products appended later by the AJAX "load more"
+   in shop.js. Two columns on mobile, four from 900px up — see the grid
+   rules below. */
+.shop-product.js-reveal-section:nth-child(2n+1) {
+	--reveal-i: 0;
+}
+
+.shop-product.js-reveal-section:nth-child(2n+2) {
+	--reveal-i: 1;
+}
+
+@media (min-width: 900px) {
+	.shop-product.js-reveal-section:nth-child(4n+1) {
+		--reveal-i: 0;
+	}
+
+	.shop-product.js-reveal-section:nth-child(4n+2) {
+		--reveal-i: 1;
+	}
+
+	.shop-product.js-reveal-section:nth-child(4n+3) {
+		--reveal-i: 2;
+	}
+
+	.shop-product.js-reveal-section:nth-child(4n+4) {
+		--reveal-i: 3;
+	}
+}
+
 .shop-product {
 	display: flex;
 	flex-direction: column;

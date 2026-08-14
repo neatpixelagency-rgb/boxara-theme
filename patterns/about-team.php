@@ -45,15 +45,15 @@ $boxara_team = array(
 		<!-- /wp:paragraph -->
 
 		<!-- wp:heading {"level":2,"className":"about-team__title","fontFamily":"display"} -->
-		<h2 class="wp-block-heading about-team__title has-display-font-family">UPOZNAJTE <mark style="background-color:rgba(0,0,0,0)" class="has-inline-color has-brand-color">OSNIVAČE</mark></h2>
+		<h2 class="wp-block-heading about-team__title has-display-font-family js-reveal-words">UPOZNAJTE <mark style="background-color:rgba(0,0,0,0)" class="has-inline-color has-brand-color">OSNIVAČE</mark></h2>
 		<!-- /wp:heading -->
 
 	</div>
 	<!-- /wp:group -->
 
 	<div class="about-team__row">
-		<?php foreach ( $boxara_team as $boxara_member ) : ?>
-			<div class="about-team__card">
+		<?php foreach ( $boxara_team as $boxara_member_i => $boxara_member ) : ?>
+			<div class="about-team__card js-reveal-section" style="--reveal-i:<?php echo (int) $boxara_member_i; ?>">
 				<div class="about-team__photo">
 					<?php if ( $boxara_member['photo'] ) : ?>
 						<img src="<?php echo esc_url( wp_get_attachment_image_url( $boxara_member['photo'], 'large' ) ); ?>" alt="<?php echo esc_attr( $boxara_member['name'] ); ?>" loading="lazy" />
