@@ -93,24 +93,26 @@
  *
  * The hero pins in place (position: sticky) while four gradient "paper
  * wave" bands rise up from below and settle covering the entire hero edge
- * to edge, then release into Collections. The pin/settle motion is pure
- * CSS scroll physics -- a sticky hero plus an absolutely-positioned layers
- * block inside a taller wrapper, no scroll-jacking JS required. The bands
- * are scaled up from their native Figma export (46vh tall, ~1.77x native)
- * with a tighter stagger than their own native proportions (18vh vs. a
- * native-ratio ~28vh) so the four of them together still span the full
- * 100vh but with less visible "step" between each band -- a soft gradient
- * wave shape absorbs the added vertical stretch fine.
+ * to edge, then release into Collections. The motion is pure CSS scroll
+ * physics -- a sticky hero plus an absolutely-positioned layers block
+ * inside a taller wrapper, all moving 1:1 with scroll, no JS. That's
+ * deliberate: an earlier version added a JS-driven per-band speed
+ * difference (some bands catching up faster than others) to make the
+ * motion more noticeable, but big flat color panels racing each other at
+ * different speeds read as messy rather than premium. Bands 1-3 are tall
+ * (70vh, vs. band 4's 46vh) instead, so each one visibly dominates the
+ * screen for a real stretch as it rises before the next covers it --
+ * strong, clearly visible motion from proportions alone, still just one
+ * shared rate for everything.
+ *
+ * Because bands 1-3 are taller than the 100vh they need to settle within,
+ * .home-hero-layers clips at that height so nothing bleeds past the
+ * hero's own bottom edge (also where Collections starts) once settled.
  *
  * Because the settled composition's bottom edge lands exactly on the
- * hero's own bottom edge (which is also where Collections starts), there's
- * no leftover "tail" needing extra scroll room the way a partial-coverage
- * version would -- pin room only needs to cover the rise itself.
- *
- * assets/js/home-hero-layers.js adds a small extra per-band offset on top
- * of this free motion, decaying to zero exactly as the layers settle, so
- * the four bands arrive with a slight stagger instead of moving as one
- * rigid block -- the only JS-driven part of the effect.
+ * hero's own bottom edge, there's no leftover "tail" needing extra scroll
+ * room the way a partial-coverage version would -- pin room only needs to
+ * cover the rise itself.
  * ---------------------------------------------------------------------- */
 
 .home-hero-pin {
@@ -137,7 +139,9 @@
 	left: 0;
 	z-index: 2;
 	width: 100%;
-	height: 100.5vh;
+	height: 100vh;
+	height: 100dvh;
+	overflow: hidden;
 	pointer-events: none;
 }
 
@@ -145,8 +149,11 @@
 	position: absolute;
 	left: 0;
 	width: 100%;
+	height: 70vh;
+}
+
+.home-hero-layers__band--4 {
 	height: 46vh;
-	will-change: transform;
 }
 
 .home-hero-layers__band img {

@@ -217,17 +217,6 @@ function boxara_scripts() {
 		_S_VERSION
 	);
 
-	// Hero pin/parallax — only the homepage has .home-hero-pin.
-	if ( is_front_page() ) {
-		wp_enqueue_script(
-			'boxara-home-hero-layers',
-			get_theme_file_uri( '/assets/js/home-hero-layers.js' ),
-			array(),
-			_S_VERSION,
-			true
-		);
-	}
-
 	// Shop and category archive styles + AJAX "load more".
 	if ( function_exists( 'is_shop' ) && ( is_shop() || is_product_taxonomy() ) ) {
 		wp_enqueue_style(
