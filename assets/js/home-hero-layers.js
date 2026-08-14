@@ -31,10 +31,8 @@
 	// (teal) band has none -- it moves at the master pace the whole time
 	// -- and each band below it starts further back, so they have more
 	// ground to close as they catch up: bottom bands read as visibly
-	// quicker, the top band as the slow, steady anchor. Large deltas
-	// (up to 35% of viewport height) so the speed difference actually
-	// reads while scrolling, not just as a faint wobble.
-	var lagVh = [ 0, 12, 23, 35 ];
+	// quicker, the top band as the slow, steady anchor.
+	var lagVh = [ 0, 25, 50, 85 ];
 
 	var ticking = false;
 
@@ -55,9 +53,18 @@
 		var progress = ( window.scrollY - pinTop ) / scrollRoom;
 		progress = Math.max( 0, Math.min( 1, progress ) );
 
+		// A band's lag has usually burned off a lot of its decay before it
+		// even scrolls into view (it starts well below the viewport), so a
+		// linear decay wastes most of the effect off-screen. Math.pow with
+		// an exponent under 1 keeps more of it in reserve through the
+		// early/middle of the scroll, so there's still a clearly visible
+		// speed difference while the bands are actually on screen, not just
+		// a snap into place right at the end.
+		var remaining = Math.pow( 1 - progress, 0.6 );
+
 		bands.forEach( function ( band, i ) {
 			var lagPx  = ( ( lagVh[ i ] || 0 ) / 100 ) * window.innerHeight;
-			var offset = ( 1 - progress ) * lagPx;
+			var offset = remaining * lagPx;
 			band.style.transform = offset ? 'translateY(' + offset.toFixed( 1 ) + 'px)' : '';
 		} );
 	}
