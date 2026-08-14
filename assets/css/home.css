@@ -92,13 +92,18 @@
  * Hero pin + paper-wave layers
  *
  * The hero pins in place (position: sticky) while four gradient "paper
- * wave" bands rise up from below and settle covering roughly its bottom
- * quarter, then release into Collections. The pin/settle motion is pure
+ * wave" bands rise up from below and settle covering the entire hero edge
+ * to edge, then release into Collections. The pin/settle motion is pure
  * CSS scroll physics -- a sticky hero plus an absolutely-positioned layers
- * block inside a taller wrapper, no scroll-jacking JS required. Proportions
- * (26vh band height, ~15.8vh stagger, 72.6vh settle depth) come from the
- * Figma export at a 809px reference hero, expressed in vh so they hold the
- * same relative shape at any real viewport height once the hero is 100dvh.
+ * block inside a taller wrapper, no scroll-jacking JS required. The bands
+ * are scaled up (~1.34x) from their native Figma export so the four of
+ * them together span the full 100vh instead of just the original ~74vh --
+ * a mild vertical stretch a soft gradient wave shape absorbs fine.
+ *
+ * Because the settled composition's bottom edge lands exactly on the
+ * hero's own bottom edge (which is also where Collections starts), there's
+ * no leftover "tail" needing extra scroll room the way a partial-coverage
+ * version would -- pin room only needs to cover the rise itself.
  *
  * assets/js/home-hero-layers.js adds a small extra per-band offset on top
  * of this free motion, decaying to zero exactly as the layers settle, so
@@ -106,22 +111,12 @@
  * rigid block -- the only JS-driven part of the effect.
  * ---------------------------------------------------------------------- */
 
-/*
- * Pin room is 106vh, not the 60vh it takes the waves to settle: the layers
- * block is ~73vh tall but only its top ~27vh overlaps the hero at settle
- * (by design -- see the settle depth below), so its remaining ~46vh tail
- * needs extra scroll room to fully clear the viewport before Collections
- * starts underneath. Without it, Collections begins while the dark band
- * is still finishing. --home-hero-settle-vh below must match the 60vh
- * used here; assets/js/home-hero-layers.js reads it to compute the same
- * settle point for the parallax progress, independent of this total.
- */
 .home-hero-pin {
 	position: relative;
 	height: calc(100vh + 110vh);
 	height: calc(100dvh + 110vh);
 	min-height: calc(600px + 110vh);
-	--home-hero-settle-vh: 60;
+	--home-hero-settle-vh: 110;
 }
 
 .home-hero-pin .home-hero.wp-block-cover {
@@ -131,12 +126,16 @@
 }
 
 .home-hero-layers {
+	/* Core's is-layout-flow block-gap puts a margin-top on every child
+	   after the first (here, 24px) -- still applied to position:absolute
+	   elements, silently shifting the whole settle calculation below. */
+	margin-top: 0;
 	position: absolute;
-	top: 132.6vh;
+	top: 110vh;
 	left: 0;
 	z-index: 2;
 	width: 100%;
-	height: 75vh;
+	height: 100.5vh;
 	pointer-events: none;
 }
 
@@ -144,7 +143,7 @@
 	position: absolute;
 	left: 0;
 	width: 100%;
-	height: 26vh;
+	height: 35.4vh;
 	will-change: transform;
 }
 
@@ -155,19 +154,19 @@
 }
 
 .home-hero-layers__band--1 {
-	top: 1vh;
+	top: 0;
 }
 
 .home-hero-layers__band--2 {
-	top: 16.8vh;
+	top: 21.6vh;
 }
 
 .home-hero-layers__band--3 {
-	top: 32.6vh;
+	top: 43.1vh;
 }
 
 .home-hero-layers__band--4 {
-	top: 48.4vh;
+	top: 64.7vh;
 }
 
 /* Reduced motion: no pin, no scroll-linked motion -- the bands just sit
