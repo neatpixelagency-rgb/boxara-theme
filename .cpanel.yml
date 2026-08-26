@@ -9,3 +9,4 @@ deployment:
     - /bin/mkdir -p $DEPLOYPATH
     - /usr/bin/find $DEPLOYPATH -mindepth 1 -delete
     - /bin/tar -cf - --exclude='.git' --exclude='.cpanel.yml' --exclude='.gitignore' --exclude='.claude' . | (cd $DEPLOYPATH && /bin/tar -xf -)
+    - /bin/chmod 755 "$DEPLOYPATH"
