@@ -8,53 +8,59 @@
  */
 
 get_header();
+
+$boxara_shop_url = function_exists( 'wc_get_page_permalink' )
+	? wc_get_page_permalink( 'shop' )
+	: home_url( '/' );
 ?>
 
-	<main id="primary" class="site-main">
+	<main id="primary" class="site-main site-main--404">
 
-		<section class="error-404 not-found">
-			<header class="page-header">
-				<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'boxara' ); ?></h1>
-			</header><!-- .page-header -->
+		<section class="boxara-404">
+			<div class="boxara-404__intro">
 
-			<div class="page-content">
-				<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'boxara' ); ?></p>
+				<div class="boxara-404__icon">
+					<?php boxara_icon( 'search' ); ?>
+				</div>
 
-					<?php
-					get_search_form();
+				<p class="boxara-404__eyebrow"><?php esc_html_e( 'Greška 404', 'boxara' ); ?></p>
 
-					the_widget( 'WP_Widget_Recent_Posts' );
-					?>
+				<h1 class="boxara-404__title"><?php esc_html_e( 'Stranica nije pronađena', 'boxara' ); ?></h1>
 
-					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'boxara' ); ?></h2>
-						<ul>
-							<?php
-							wp_list_categories(
-								array(
-									'orderby'    => 'count',
-									'order'      => 'DESC',
-									'show_count' => 1,
-									'title_li'   => '',
-									'number'     => 10,
-								)
-							);
-							?>
-						</ul>
-					</div><!-- .widget -->
+				<p class="boxara-404__desc">
+					<?php esc_html_e( 'Stranica koju tražite ne postoji, premeštena je ili je privremeno nedostupna. Proverite adresu ili se vratite na jedno od mesta ispod.', 'boxara' ); ?>
+				</p>
 
-					<?php
-					/* translators: %1$s: smiley */
-					$boxara_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'boxara' ), convert_smilies( ':)' ) ) . '</p>';
-					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$boxara_archive_content" );
+				<form role="search" method="get" class="boxara-404__search" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+					<label class="screen-reader-text" for="boxara-404-search"><?php esc_html_e( 'Pretraga', 'boxara' ); ?></label>
+					<span class="boxara-404__search-icon"><?php boxara_icon( 'search' ); ?></span>
+					<input
+						type="search"
+						id="boxara-404-search"
+						class="boxara-404__search-field"
+						placeholder="<?php esc_attr_e( 'Pretraži prodavnicu…', 'boxara' ); ?>"
+						value="<?php echo esc_attr( get_search_query() ); ?>"
+						name="s"
+					/>
+					<button type="submit" class="boxara-404__search-submit">
+						<span class="screen-reader-text"><?php esc_html_e( 'Pretraži', 'boxara' ); ?></span>
+						<?php boxara_icon( 'arrow-right' ); ?>
+					</button>
+				</form>
 
-					the_widget( 'WP_Widget_Tag_Cloud' );
-					?>
+				<div class="boxara-404__actions">
+					<a class="boxara-404__cta" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+						<?php esc_html_e( 'Nazad na početnu', 'boxara' ); ?>
+					</a>
+					<a class="boxara-404__cta boxara-404__cta--ghost" href="<?php echo esc_url( $boxara_shop_url ); ?>">
+						<?php esc_html_e( 'Pogledaj prodavnicu', 'boxara' ); ?>
+					</a>
+				</div>
 
-			</div><!-- .page-content -->
-		</section><!-- .error-404 -->
+			</div>
+		</section><!-- .boxara-404 -->
 
-	</main><!-- #main -->
+	</main><!-- #primary -->
 
 <?php
 get_footer();

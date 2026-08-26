@@ -1,0 +1,214 @@
+/**
+ * 404 (page not found) template.
+ *
+ * Same shape as the WooCommerce thank-you intro (icon, eyebrow, title, desc,
+ * actions) in checkout.css, given its own namespace since it's not a
+ * WooCommerce screen. Mobile first. Values come from theme.json only — no
+ * raw hex, no magic numbers, except one-off layout dimensions with no
+ * matching token (matches the convention already used in about.css/home.css).
+ *
+ * @package Boxara
+ */
+
+.site-main--404 {
+	padding: 0;
+	margin: 0;
+	max-width: none;
+}
+
+.boxara-404 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 70vh;
+	padding: var(--wp--preset--spacing--64) var(--wp--custom--container--gutter-mobile);
+	background-color: var(--wp--custom--color--bg-primary);
+}
+
+.boxara-404__intro {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 480px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.boxara-404__icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 64px;
+	height: 64px;
+	margin-bottom: var(--wp--preset--spacing--24);
+	border-radius: var(--wp--custom--radius--pill);
+	background-color: var(--wp--custom--color--bg-secondary);
+	color: var(--wp--custom--color--brand-primary);
+}
+
+.boxara-404__icon .boxara-icon {
+	width: 28px;
+	height: 28px;
+}
+
+.boxara-404__eyebrow {
+	margin: 0 0 var(--wp--preset--spacing--8);
+	font-family: var(--wp--preset--font-family--label);
+	font-size: var(--wp--custom--font-size--label-sm);
+	font-weight: 700;
+	letter-spacing: var(--wp--custom--letter-spacing--ultra-wide);
+	text-transform: uppercase;
+	color: var(--wp--custom--color--brand-primary);
+}
+
+.boxara-404__title {
+	margin: 0 0 var(--wp--preset--spacing--16);
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--custom--font-size--heading-xl);
+	line-height: 1;
+	color: var(--wp--custom--color--text-primary);
+}
+
+.boxara-404__desc {
+	margin: 0;
+	font-size: var(--wp--custom--font-size--body-sm);
+	line-height: 1.6;
+	color: var(--wp--custom--color--text-secondary);
+}
+
+/* Search */
+
+.boxara-404__search {
+	display: flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--8);
+	width: 100%;
+	height: 48px;
+	margin-top: var(--wp--preset--spacing--32);
+	padding: 0 var(--wp--preset--spacing--8) 0 var(--wp--preset--spacing--16);
+	border: 1px solid var(--wp--custom--color--stroke-warm);
+	border-radius: var(--wp--custom--radius--sm);
+	background-color: var(--wp--custom--color--bg-secondary);
+}
+
+.boxara-404__search-icon {
+	display: flex;
+	flex-shrink: 0;
+	width: 18px;
+	height: 18px;
+	color: var(--wp--custom--color--text-muted);
+}
+
+.boxara-404__search-icon .boxara-icon {
+	width: 100%;
+	height: 100%;
+}
+
+.boxara-404__search-field {
+	flex: 1 1 auto;
+	min-width: 0;
+	height: 100%;
+	border: none;
+	background: none;
+	color: var(--wp--custom--color--text-primary);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--custom--font-size--body-xs);
+}
+
+.boxara-404__search-field::placeholder {
+	color: var(--wp--custom--color--text-muted);
+}
+
+.boxara-404__search-field:focus-visible {
+	outline: none;
+}
+
+.boxara-404__search:focus-within {
+	border-color: var(--wp--custom--color--brand-primary);
+}
+
+.boxara-404__search-submit {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 36px;
+	height: 36px;
+	border: none;
+	border-radius: var(--wp--custom--radius--sm);
+	background-color: var(--wp--custom--color--brand-primary);
+	color: var(--wp--preset--color--white);
+	cursor: pointer;
+	transition: background-color 0.18s ease;
+}
+
+.boxara-404__search-submit .boxara-icon {
+	width: 16px;
+	height: 16px;
+}
+
+.boxara-404__search-submit:hover,
+.boxara-404__search-submit:focus-visible {
+	background-color: var(--wp--custom--color--brand-dark);
+}
+
+/* Actions */
+
+.boxara-404__actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--wp--preset--spacing--12);
+	margin-top: var(--wp--preset--spacing--32);
+}
+
+.boxara-404__cta {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--32);
+	border-radius: var(--wp--custom--radius--sm);
+	background-color: var(--wp--custom--color--brand-primary);
+	color: var(--wp--preset--color--white);
+	font-family: var(--wp--preset--font-family--label);
+	font-size: var(--wp--custom--font-size--label-md);
+	font-weight: 800;
+	letter-spacing: var(--wp--custom--letter-spacing--wide);
+	text-transform: uppercase;
+	text-decoration: none;
+	transition: background-color 0.18s ease;
+}
+
+.boxara-404__cta:hover,
+.boxara-404__cta:focus-visible {
+	background-color: var(--wp--custom--color--brand-dark);
+	color: var(--wp--preset--color--white);
+}
+
+.boxara-404__cta--ghost {
+	background-color: transparent;
+	border: 1px solid var(--wp--custom--color--stroke-warm);
+	color: var(--wp--custom--color--text-primary);
+}
+
+.boxara-404__cta--ghost:hover,
+.boxara-404__cta--ghost:focus-visible {
+	background-color: var(--wp--custom--color--bg-secondary);
+	color: var(--wp--custom--color--text-primary);
+	border-color: var(--wp--custom--color--stroke-warm);
+}
+
+@media (min-width: 900px) {
+
+	.boxara-404 {
+		padding: var(--wp--custom--container--gutter-desktop);
+	}
+
+	.boxara-404__title {
+		font-size: var(--wp--custom--font-size--display-sm);
+	}
+
+	.boxara-404__search {
+		width: 400px;
+	}
+}

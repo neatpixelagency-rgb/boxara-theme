@@ -325,6 +325,16 @@ function boxara_scripts() {
 		);
 	}
 
+	// 404 (page not found) template.
+	if ( is_404() ) {
+		wp_enqueue_style(
+			'boxara-404',
+			get_theme_file_uri( '/assets/css/404.css' ),
+			array( 'boxara-chrome' ),
+			_S_VERSION
+		);
+	}
+
 	// Replaces the Underscores navigation script — our drawer has its own behaviour.
 	wp_enqueue_script(
 		'boxara-chrome',
