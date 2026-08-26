@@ -3,34 +3,27 @@
  * Title: About — Team
  * Slug: boxara/about-team
  * Categories: boxara-home
- * Description: Founder cards — name, role and bio. Photos are rendered as a placeholder; see inline note.
+ * Description: Founder cards — name, role, bio and photo.
  * Keywords: o nama, about, ekipa, team, osnivaci
  * Viewport Width: 1440
  *
  * @package Boxara
  */
 
-/*
- * The Figma source photos for this section (nodes 233:1959 and 233:1966) are
- * generic stock images — a woman doing pottery and a studio headshot —
- * neither shows the actual founders or the paper-craft business. Shipping
- * them as "meet the founders" photos would misrepresent real people, the
- * same call made for the store photo in home-store-location.php. Each card
- * renders a placeholder avatar instead until real founder photos are
- * supplied.
- */
+// Founder photos, matching Figma node 233:1953 (nodes 233:1959 and 233:1966),
+// uploaded to the Media Library.
 $boxara_team = array(
 	array(
 		'name'  => 'Sara',
-		'role'  => 'Artisan i Master Sklapanja',
-		'bio'   => 'Sara je srce našeg ateljea. Ona voli da svaki komad bude savršen — ne samo lep, već i osećaj koji ostaje u prostoriji.',
-		'photo' => 0,
+		'role'  => 'Osnivač i Master Sklapanja',
+		'bio'   => 'Sara je srce našeg ateljea. Ona voli da svaki komad bude savršen, ne samo lep, već i osećaj koji ostaje u prostoriji.',
+		'photo' => 1338,
 	),
 	array(
 		'name'  => 'Marko',
-		'role'  => 'Osnivač i Kreativni Lider',
+		'role'  => 'Partner i Tehnička Podrška',
 		'bio'   => 'Marko voli da stvara stvari koje nisu samo lepe, već i inteligentne. On vidi svet kao slojeve koji čekaju da budu otkriveni.',
-		'photo' => 0,
+		'photo' => 1339,
 	),
 );
 ?>

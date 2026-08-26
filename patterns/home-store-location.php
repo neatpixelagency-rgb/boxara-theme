@@ -3,7 +3,7 @@
  * Title: Home — Store Location
  * Slug: boxara/home-store-location
  * Categories: boxara-home
- * Description: Physical store address, hours, phone and a visit CTA next to a storefront photo.
+ * Description: Physical store address, hours, phone and a visit CTA next to a Google Maps embed.
  * Keywords: prodavnica, lokacija, store, location, home
  * Viewport Width: 1440
  *
@@ -11,12 +11,12 @@
  */
 
 /*
- * The Figma source image for this slot (node 112:222) is a boxing-gear shop
- * stock photo — visibly the wrong business, not just an aesthetic stand-in.
- * Shipping it would misrepresent the store, so this renders a placeholder
- * tile instead until a real photo of the Belgrade space is supplied.
+ * There is currently no verified Google Maps business pin for the store
+ * address, so this uses the same address-based Maps embed (no API key,
+ * no invented coordinates or Place ID) as patterns/kontakt-location.php
+ * and footer.php, instead of a static photo.
  */
-$boxara_store_image_url = '';
+$boxara_map_embed_src = 'https://www.google.com/maps?q=Palmira+Toljatija+5,+Beograd,+Srbija&output=embed';
 ?>
 <!-- wp:group {"className":"home-store","layout":{"type":"constrained"}} -->
 <div class="wp-block-group home-store">
@@ -38,11 +38,7 @@ $boxara_store_image_url = '';
 	<div class="home-store__content">
 
 		<div class="home-store__image js-reveal-section" style="--reveal-i:0">
-			<?php if ( $boxara_store_image_url ) : ?>
-				<img src="<?php echo esc_url( $boxara_store_image_url ); ?>" alt="Boxara izložbeni prostor" loading="lazy" />
-			<?php else : ?>
-				<span class="home-store__image-placeholder" aria-hidden="true"><?php boxara_icon( 'map-pin' ); ?></span>
-			<?php endif; ?>
+			<iframe class="home-store__map-embed" src="<?php echo esc_url( $boxara_map_embed_src ); ?>" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="<?php esc_attr_e( 'Mapa lokacije Boxara prodavnice', 'boxara' ); ?>"></iframe>
 		</div>
 
 		<div class="home-store__details js-reveal-section" style="--reveal-i:1">
@@ -52,23 +48,23 @@ $boxara_store_image_url = '';
 					<span class="home-store__pin"><?php boxara_icon( 'map-pin' ); ?></span>
 					<span class="home-store__address-name">Beogradski izložbeni prostor</span>
 				</p>
-				<p class="home-store__address-street">Knez Mihailova 24, Beograd, Srbija</p>
+				<p class="home-store__address-street">Palmira Toljatija 5, Stari Mercator, sa spoljne strane</p>
 			</div>
 
 			<div class="home-store__meta">
 				<span class="home-store__meta-label">Radno vreme</span>
-				<p class="home-store__meta-value">Pon &ndash; Sub: 10:00 &ndash; 21:00 | Ned: 11:00 &ndash; 18:00</p>
+				<p class="home-store__meta-value">Pon &ndash; Pet: 09:00 &ndash; 17:00 | Sub: 09:00 &ndash; 15:00 | Ned: zatvoreno</p>
 			</div>
 
 			<div class="home-store__meta">
 				<span class="home-store__meta-label">Telefon</span>
-				<p class="home-store__meta-value"><a href="tel:+381111234567">+381 11 123 4567</a></p>
+				<p class="home-store__meta-value"><a href="tel:+381601901034">+381 60 1901034</a></p>
 			</div>
 
 			<!-- wp:buttons {"className":"home-store__cta"} -->
 			<div class="wp-block-buttons home-store__cta">
 				<!-- wp:button {"className":"is-style-fill"} -->
-				<div class="wp-block-button is-style-fill"><a class="wp-block-button__link wp-element-button" href="https://maps.google.com/?q=Knez+Mihailova+24,+Beograd" target="_blank" rel="noopener">Poseti nas</a></div>
+				<div class="wp-block-button is-style-fill"><a class="wp-block-button__link wp-element-button" href="https://maps.google.com/?q=Palmira+Toljatija+5,+Beograd,+Srbija" target="_blank" rel="noopener">Poseti nas</a></div>
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->
