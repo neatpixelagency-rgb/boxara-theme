@@ -5,5 +5,7 @@ deployment:
     - if [ "$BRANCH" = "main" ]; then export SITE_ROOT=/home/rekultur/boxara.rs; else export SITE_ROOT=/home/rekultur/staging.boxara.rs; fi
     - export DEPLOYPATH=$SITE_ROOT/wp-content/themes/boxara/
     - if [ -z "$SITE_ROOT" ]; then echo "SITE_ROOT empty, aborting"; exit 1; fi
+    - if [ -z "$DEPLOYPATH" ]; then echo "DEPLOYPATH empty, aborting"; exit 1; fi
     - /bin/mkdir -p $DEPLOYPATH
-    - /usr/bin/rsync -a --delete --exclude '.git' --exclude '.cpanel.yml' --exclude '.gitignore' --exclude '.claude' ./ $DEPLOYPATH
+    - /usr/bin/find $DEPLOYPATH -mindepth 1 -delete
+    - /bin/tar -cf - --exclude='.git' --exclude='.cpanel.yml' --exclude='.gitignore' --exclude='.claude' . | (cd $DEPLOYPATH && /bin/tar -xf -)
